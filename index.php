@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>403 Forbidden</title>
-</head>
-<body>
+<?php
+include 'Lib/Router.php';
+//use Lib\Router as Router;
+$controller=null;
+$action=null;
+$id=null;
 
-<p>Directory access is forbidden.</p>
+$router = new Router();
+if(isset($_GET['controller'])){
+	$controller = $_GET['controller'];
+}
+if(isset($_GET['action'])){
+	$action = $_GET['action'];
+}
+if(isset($_GET['id'])){
+	$id = $_GET['id'];
+}
 
-</body>
-</html>
+
+$router->createController($controller, $action, $id);
