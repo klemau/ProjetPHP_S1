@@ -9,7 +9,7 @@ class Router
 	// FONCTION DE CREATION DU CONTROLLER DEMANDE
 	function createController($controller, $action, $id){
 		if($controller=='' || $controller==null){
-			$controller='Accueil';
+			$controller='User';
 		}
 		$controllerName = $controller.'Controller'; // $controllerName='BougieController.php';
 		if(file_exists('controllers/'.$controllerName.'.php')){

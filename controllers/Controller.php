@@ -32,9 +32,12 @@ class Controller{
 		echo "<html>";
 		echo "<head>";
 		echo "<title>".$titre."</title>";
-		include('./views/menu.php');
 		echo "</head>";
-		 
+
+		echo "<header>";
+		include('./views/menu.php');
+		echo "<h1>".$titre."</h1>";
+		echo "</header>";		 
 		echo "<body>";
 		echo "<p>contenu html</p>";
 		include($link);
