@@ -1,5 +1,9 @@
 <?php
 include 'Lib/Router.php';
+
+session_start();
+$_SESSION['login']=null;
+
 //use Lib\Router as Router;
 $controller=null;
 $action=null;
