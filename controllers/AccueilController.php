@@ -4,16 +4,18 @@ require_once('Controller.php');
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class AccueilController extends Controller {
+	
 	function index(){
 		$this->liste();
+		$this->display('accueil', 'Accueil', 'mail');
 	}
 
 	private function liste(){
-		echo("<h1> Accueil </h1>");
+	/*	echo("<h1> Accueil </h1>");
 		echo("<h2> Welcome </h2>");
 		echo("<p> Bienvenue sur SITE </p>");
 		try {
-			$database = DatabaseConnection::getDatabase();
+			$database = DatabaseConnection::getDatabase(); */
 			/*
 			$users = $database->query('SELECT * FROM user');
 			while($user = $users->fetch()){
@@ -21,7 +23,7 @@ class AccueilController extends Controller {
 			}
 			*/
 
-			require_once(__DIR__.'/../models/UserModel.php');
+	/*		require_once(__DIR__.'/../models/UserModel.php');
 			$mod = new UserModel();
 			if($mod->connect("Rose", "RaggedyMan") == true){
 				echo("<h2> Hello ".$_SESSION['login']."</h2>");
@@ -33,6 +35,6 @@ class AccueilController extends Controller {
 		}
 		catch (Exception $e){
 			echo("Connection loupée");
-		}
+		}*/
 	}
 }
