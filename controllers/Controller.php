@@ -19,15 +19,18 @@ class Controller{
     {
         if( file_exists('./models/'.$model.'.php')) {
             include_once('./models/'.$model.'.php');
-        }
+		}
+		
         if( ! file_exists('./views/'.$content.'.php')) {
             echo("Fichier inexistant ".$content.'.php');
         }
         else
         {
-        	$link='./views/'.$content.'.php';
-        }
-
+			$link='./views/'.$content.'.php';
+			include('./views/Template.php');
+		}
+		
+		/* A passer dans un template.php 
         echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
@@ -46,7 +49,7 @@ class Controller{
 		echo "<footer>";
 		include('./views/footer.php');
 		echo "</footer>";
-		echo "</html>";
+		echo "</html>"; */
     }
 
 	// FONCTION DE VERIFICATION DE LA SESSION
