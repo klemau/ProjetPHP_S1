@@ -1,4 +1,3 @@
-
 <?php 
 $mod = new UserModel();
 // global $tab;
@@ -14,21 +13,21 @@ if(isset($_POST["login"]) && isset($_POST["password"]))
 {
 	try {
 		if($mod->connect($_POST["login"], $_POST["password"]) == true){
-			echo("<h3> Connexion réussie ".$_SESSION['login']."</h3>");
+			echo("<h3> Connexion rÃ©ussie ".$_SESSION['login']."</h3>");
 		}
 		else
 		{
-			echo("<h3> Connexion ratée </h3>");
+			echo("<h3> Connexion ratÃ©e </h3>");
 		}
 	}
 	catch (Exception $e){
-		echo("La connexion a raté");
+		echo("La connexion a ratÃ©");
 	}
 }
-elseif (isset($_POST["submit"]) && $_POST["submit"]=="Se Déconnecter") 
-	//si POST submit est égal à Se Déconnecter, c'est qu'on veut terminer la session
+elseif (isset($_POST["submit"]) && $_POST["submit"]=="Se DÃ©connecter") 
+	//si POST submit est Ã©gal Ã  Se DÃ©connecter, c'est qu'on veut terminer la session
 {
-	echo("<h3>Déconnexion réussie</h3>");
+	echo("<h3>DÃ©connexion rÃ©ussie</h3>");
 	session_unset();
 	session_destroy();
 }
@@ -42,6 +41,13 @@ else
 	{
 		echo("<h3> Bienvenue ".$_SESSION['login']."</h3>");
 	}
-}
-?>
 
+// Accueil Provisoire
+echo '<ul>';
+foreach ($content as $value){
+    echo '<li> - '.$value.'</li>';
+}
+echo '</ul>';
+
+// Accueil Final : Hub pour accéder aux pages
+?>

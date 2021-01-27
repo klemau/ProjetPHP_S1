@@ -1,7 +1,6 @@
 <?php
 //namespace controllers;
 require_once('Controller.php');
-//require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class UserController extends Controller {
 	
@@ -17,11 +16,7 @@ class UserController extends Controller {
 	}
 
 	public function login() {
-
-		//Appel de form_login pour récupérer les données (id, mdp)
-		//Appel de UserModel pour effectuer la connexion avec ces données
 		try {
-			$database = DatabaseConnection::getDatabase(); 
 			require_once(__DIR__.'/../models/UserModel.php');
 			$mod = new UserModel();
 			if(isset($_POST["login"]) && isset($_POST["password"]))
@@ -35,10 +30,9 @@ class UserController extends Controller {
 		catch (Exception $e){
 			echo("Connection loupée");
 		}
-
 	}
 
 	public function logout() {
-		
+
 	}
 }
