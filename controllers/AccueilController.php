@@ -7,7 +7,7 @@ class AccueilController extends Controller {
 	
 	function index(){
 		$this->liste();
-		$this->display('accueil', 'Accueil', 'mail');
+		$this->display('accueil', 'Accueil', 'UserModel');
 	}
 
 	private function liste(){
@@ -16,12 +16,6 @@ class AccueilController extends Controller {
 		echo("<p> Bienvenue sur SITE </p>");
 		try {
 			$database = DatabaseConnection::getDatabase(); 
-			
-			// $users = $database->query('SELECT * FROM user');
-			// while($user = $users->fetch()){
-			// 	echo("<p>ID : ".$user["id"]." , Login : ".$user["login"]." , PWD : ".$user["pwd"]." , Role : ".$user["role"]."</p>");
-			// }
-			
 
 			require_once(__DIR__.'/../models/UserModel.php');
 			$mod = new UserModel();
@@ -29,12 +23,12 @@ class AccueilController extends Controller {
 				echo("<h2> Hello ".$_SESSION['login']."</h2>");
 			}
 			else {
-				echo("<h2> Login failed </h2>");
+				echo("<h2> Login failed. </h2>");
 			}
 
 		}
 		catch (Exception $e){
-			echo("Connection loupée");
-		}*/
+			echo("Connection loupÃ©e");
+		}
 	}
 }

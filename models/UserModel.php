@@ -11,7 +11,7 @@ class UserModel {
 			if($user!=null){
 				$us = $user->fetch();
 				$_SESSION['login'] = $us['login'];
-				$_SESSION['pass'] = $us['pwd'];
+				// $_SESSION['pass'] = $us['pwd']; //ligne inutile : faille de sécurité de mettre le password dans la session
 			}
 		}
 		return $_SESSION['login'] != null;
