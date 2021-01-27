@@ -11,12 +11,11 @@ class AccueilController extends Controller {
 	}
 
 	private function liste(){
-		echo("<h1> Accueil </h1>");
+		/*echo("<h1> Accueil </h1>");
 		echo("<h2> Welcome </h2>");
 		echo("<p> Bienvenue sur SITE </p>");
 		try {
 			$database = DatabaseConnection::getDatabase(); 
-
 
 			require_once(__DIR__.'/../models/UserModel.php');
 			$mod = new UserModel();
@@ -29,7 +28,7 @@ class AccueilController extends Controller {
 
 		}
 		catch (Exception $e){
-			echo("Connection loupée");
+			echo("Connection loupÃ©e");
 		}
 	}
 }

@@ -2,7 +2,7 @@
 <?php /*if (isset($_SESSION['login']) && isset($_SESSION['password'])):*/ ?>
 	<!-- <p>Vous êtes déjà connecté</p> -->
 <?php /*else:*/ ?>
-<form>
+<form action="Accueil" method="post">
   <div class="mb-3">
   	<label for="login"> Login de l'utilisateur </label>
 	<input type="input" name="login" /><br />
