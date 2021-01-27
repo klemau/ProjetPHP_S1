@@ -11,7 +11,7 @@ include('./views/menu.php');
 echo "<h1>".$titre."</h1>";
 echo "</header>";		 
 echo "<body>";
-echo "<p>contenu html</p>";
+echo "<p>Hub : ...</p>";
 include($link);
 echo "</body>";
 include('./views/footer.php');
