@@ -29,6 +29,6 @@ class AccueilController extends Controller {
 		}
 		catch (Exception $e){
 			echo("Connection loupée");
-		}
+		}*/
 	}
 }

@@ -9,17 +9,39 @@ $mod = new UserModel();
 // }
 echo '</ul>';
 
-try {
-	if($mod->connect("Amy", "RaggedyMan") == true){
-		echo("<h2> Bienvenue ".$_SESSION['login']."</h2>");
+if(isset($_POST["login"]) && isset($_POST["password"]))
+	//si POST de login et de password existent, c'est qu'on arrive de Connexion
+{
+	try {
+		if($mod->connect($_POST["login"], $_POST["password"]) == true){
+			echo("<h3> Connexion réussie ".$_SESSION['login']."</h3>");
+		}
+		else
+		{
+			echo("<h3> Connexion ratée </h3>");
+		}
 	}
-	else {
+	catch (Exception $e){
+		echo("La connexion a raté");
+	}
+}
+elseif (isset($_POST["submit"]) && $_POST["submit"]=="Se Déconnecter") 
+	//si POST submit est égal à Se Déconnecter, c'est qu'on veut terminer la session
+{
+	echo("<h3>Déconnexion réussie</h3>");
+	session_unset();
+	session_destroy();
+}
+else 
+{
+	if($_SESSION['login']==null)
+	{
 		echo("<h2> Bienvenue </h2>");
 	}
-
-}
-catch (Exception $e){
-	echo("Connection loupée");
+	else
+	{
+		echo("<h3> Bienvenue ".$_SESSION['login']."</h3>");
+	}
 }
 ?>
 

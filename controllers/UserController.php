@@ -6,7 +6,14 @@ require_once('Controller.php');
 class UserController extends Controller {
 	
 	function index(){
-		$this->display('form_login', 'Connexion', 'UserModel');
+		if($_SESSION['login']==null)
+		{
+			$this->display('form_login', 'Connexion', 'UserModel');
+		}
+		else
+		{
+			$this->display('form_logout', 'Déconnexion', 'UserModel');
+		}
 	}
 
 	public function login() {
