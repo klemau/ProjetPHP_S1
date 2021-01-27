@@ -2,7 +2,10 @@
 include 'Lib/Router.php';
 
 session_start();
-$_SESSION['login']=null;
+if(! isset($_SESSION['login']))
+{
+	$_SESSION['login']=null;
+}
 
 //use Lib\Router as Router;
 $controller=null;
