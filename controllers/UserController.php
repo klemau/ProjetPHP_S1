@@ -5,6 +5,7 @@ require_once('Controller.php');
 class UserController extends Controller {
 	
 	function index(){
+	/*
 		if($_SESSION['login']==null)
 		{
 			$this->display('form_login', 'Connexion', 'UserModel');
@@ -13,8 +14,11 @@ class UserController extends Controller {
 		{
 			$this->display('form_logout', 'Déconnexion', 'UserModel');
 		}
+	*/
+		$this->display('listeUtilisateurs', 'Liste Utilisateurs', $this->listeUsers());
 	}
 
+<<<<<<< Updated upstream
 	public function login() {
 		try {
 			require_once(__DIR__.'/../models/UserModel.php');
@@ -34,5 +38,11 @@ class UserController extends Controller {
 
 	public function logout() {
 
+=======
+	function listeUsers(){ // Récupère et retourne une liste des tous les utilisateurs présents dans la base de données
+		require_once(__DIR__.'/../models/UserModel.php');
+		$model = new UserModel();
+		return $model->getListUsers();
+>>>>>>> Stashed changes
 	}
 }

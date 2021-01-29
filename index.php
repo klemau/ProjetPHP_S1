@@ -23,5 +23,10 @@ if(isset($_GET['id'])){
 	$id = $_GET['id'];
 }
 
+/*
+var_dump($controller);
+var_dump($action);
+var_dump($id);
+*/
 
 $router->createController($controller, $action, $id);

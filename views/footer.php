@@ -1,1 +1,1 @@
-<footer>Projet PHP 2021 - S1IMR ENSSAT - Blandine Guillemot & Killian Le Mau</footer>
+<footer>Projet PHP 2021 - S1 IMR ENSSAT - Blandine Guillemot & Killian Le Mau</footer>

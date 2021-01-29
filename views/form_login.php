@@ -1,4 +1,14 @@
+<<<<<<< Updated upstream
 <form action="Accueil" method="post">
+=======
+<?php 
+	if($content != NULL){
+		echo "<h3>".$content."</h3>";
+	}
+?> 
+
+<form action="/Accueil" method="post">
+>>>>>>> Stashed changes
   <div class="mb-3">
   	<label for="login"> Login de l'utilisateur </label>
 	<input type="input" name="login" /><br />

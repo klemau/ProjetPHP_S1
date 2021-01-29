@@ -1,4 +1,5 @@
 <?php
+include(__DIR__.'/../objects/User.php');
 
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
@@ -24,15 +25,49 @@ class UserModel {
 		}
 	}
 
+	function getUserByLogin($login) {
+		$database = DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'"');
+				if($user!=null){
+					$us = $result->fetch();
+					return new User($us['login'], $us['id'],$us['role']);
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function getUserByID($id) {
+		$database = DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM user WHERE id='.$id);
+				if($user!=null){
+					$us = $result->fetch();
+					return new User($us['login'], $us['id'],$us['role']);
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
 	function connect($login, $pass){
 		$database = DatabaseConnection::getDatabase();
 		if($database!=null){
 			try {
-				$user = $database->query('SELECT * FROM user WHERE login="'.$login.'" AND pwd="'.$pass.'"');
-				if($user!=null){
-					$us = $user->fetch();
+				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'" AND pwd="'.$pass.'"');
+				if($result!=null){
+					$us = $result->fetch();
 					$_SESSION['login'] = $us['login'];
-					$_SESSION['pass'] = $us['pwd'];
+					$_SESSION['role'] = $us['role'];
 				}
 			}
 			catch(Exception $e){
@@ -48,12 +83,13 @@ class UserModel {
 		$users = [];
 		if($database!=null){
 			try {
-				$user = $database->query("SELECT * FROM user");
-				if($user!=null){
-					$us =$user->fetch();
+				$result = $database->query("SELECT * FROM user");
+				if($result!=null){
+					$us =$result->fetch();
 					while($us != NULL){
-						array_push($users, $us['login']);
-						$us = $user->fetch();
+						$user = new User($us['login'], $us['id'],$us['role']);
+						array_push($users, $user);
+						$us = $result->fetch();
 					}
 				}
 			}
