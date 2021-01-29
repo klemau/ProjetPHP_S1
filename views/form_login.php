@@ -1,3 +1,9 @@
+<?php 
+	if($content != NULL){
+		echo "<h3>".$content."</h3>";
+	}
+?>
+
 <form action="Accueil" method="post">
   <div class="mb-3">
   	<label for="login"> Login de l'utilisateur </label>

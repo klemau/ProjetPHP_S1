@@ -7,14 +7,15 @@ class UserController extends Controller {
 	function index(){
 		if($_SESSION['login']==null)
 		{
-			$this->display('form_login', 'Connexion', 'UserModel');
+			$this->display('form_login', 'Connexion', NULL);
 		}
 		else
 		{
-			$this->display('form_logout', 'Déconnexion', 'UserModel');
+			$this->display('form_logout', 'Déconnexion', NULL);
 		}
 	}
 
+	/*
 	public function login() {
 		try {
 			require_once(__DIR__.'/../models/UserModel.php');
@@ -35,4 +36,5 @@ class UserController extends Controller {
 	public function logout() {
 
 	}
+	*/
 }

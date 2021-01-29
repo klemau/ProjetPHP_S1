@@ -13,15 +13,15 @@ class Router
 		}
 		$controllerName = $controller.'Controller'; // $controllerName='BougieController.php';
 		if(file_exists('controllers/'.$controllerName.'.php')){
+
 			require_once('controllers/'.$controllerName.'.php');
-
 			$cont = new $controllerName();	
-
 
 			//Appel méthode $action 
 			if($action=='' || $action==null){
 				$action='index';
 			}
+
 			$cont->Appel($action);
 		}
 	}

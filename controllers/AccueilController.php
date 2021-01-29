@@ -6,20 +6,15 @@ require_once('Controller.php');
 class AccueilController extends Controller {
 	
 	function index(){
-		//$this->liste();	
-		//Accueil provisoire : liste des logins utilisateurs 
-		$users = $this->getUsers();
-		$this->display('accueil', 'Accueil', $users);
-		
-		//Accueil final prévu : ?
-
-		
-		//Test ajout User dans la BDD --> Fonctionne
-		/*
-		require_once(__DIR__.'/../models/UserModel.php');
-		$model = new UserModel();
-		$model->create("user4", "MdP");
-		*/
+		if ($this->verifyConnection() || !isset($_POST['login'])){
+			$users = $this->getUsers();
+			$this->display('accueil', 'Accueil', $users);
+		}
+		else {
+			unset($_POST);
+			$_POST = array();
+			$this->display('form_login', 'Connexion', "Erreur de connexion");
+		}
 	}
 
 	private function getUsers(){		
