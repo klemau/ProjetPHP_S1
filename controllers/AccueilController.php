@@ -6,34 +6,18 @@ require_once('Controller.php');
 class AccueilController extends Controller {
 	
 	function index(){
-<<<<<<< Updated upstream
-		//$this->liste();	
-		//Accueil provisoire : liste des logins utilisateurs 
-		$users = $this->getUsers();
-		$this->display('accueil', 'Accueil', $users);
-		
-		//Accueil final prévu : ?
-
-		
-		//Test ajout User dans la BDD --> Fonctionne
-		/*
-		require_once(__DIR__.'/../models/UserModel.php');
-		$model = new UserModel();
-		$model->create("user4", "MdP");
-		*/
-=======
 		if ($this->verifyConnection() || !isset($_POST['login'])){ 
 			$users = $this->getUsers();
 			$this->display('accueil', 'Accueil', $users);
 		}
 
-		// Accès à Accueil depuis Login avec des mauvais identifiants 
+		// Tentative d'accès à Accueil depuis Login avec des mauvais identifiants 
 		else { 
 			unset($_POST);
 			$_POST = array();
 			$this->display('form_login', 'Connexion', "Erreur de connexion");
 		}
->>>>>>> Stashed changes
+		
 	}
 
 	//Provisoirement utilisée pour tester les affichages sur l'accueil. Les diverses listes auront leur propre page et Controller par la suite
@@ -51,7 +35,13 @@ class AccueilController extends Controller {
 		else {
 			$this->display('form_logout', 'Deconnexion', NULL);
 		}
-	}
+	}	
 
+	function listeBougies(){ // Récupère et retourne une liste des toutes les bougies
+		require_once(__DIR__.'/../models/BougieModel.php');
+		$model = new BougieModel();
+		//$model->create(new Bougie("Bougie test", 1, 1, 'validée'));
+		return $model->getListBougies();
+	}
 
 }

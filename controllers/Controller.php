@@ -29,8 +29,6 @@ class Controller{
 	protected function verifySession(){
 		return $_SESSION['login']!=null;
 	}
-<<<<<<< Updated upstream
-=======
 
 	protected function verifyConnection(){
 		require_once("./Models/UserModel.php");
@@ -64,5 +62,4 @@ class Controller{
 		}
 		return false;
 	}
->>>>>>> Stashed changes
 }
