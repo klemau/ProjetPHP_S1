@@ -40,8 +40,8 @@ else {
 */
 // Accueil Provisoire
 echo '<ul>';
-foreach ($content as $value){
-    echo '<li> - '.$value.'</li>';
+foreach ($content as $user){
+    echo '<li> '.$user->login.' = '.$user->role.' ; ID = '.$user->id.'</li>';
 }
 echo '</ul>';
 

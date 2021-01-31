@@ -17,37 +17,22 @@ class AccueilController extends Controller {
 		}
 	}
 
+	//Provisoirement utilisée pour tester les affichages sur l'accueil. Les diverses listes auront leur propre page et Controller par la suite
 	private function getUsers(){		
 		require_once(__DIR__.'/../models/UserModel.php');
 		$model = new UserModel();
 		return $model->getListUsers();
 	}
 
-	private function liste(){
-	/*	echo("<h1> Accueil </h1>");
-		echo("<h2> Welcome </h2>");
-		echo("<p> Bienvenue sur SITE </p>");
-		try {
-			$database = DatabaseConnection::getDatabase(); */
-			/*
-			$users = $database->query('SELECT * FROM user');
-			while($user = $users->fetch()){
-				echo("<p>ID : ".$user["id"]." , Login : ".$user["login"]." , PWD : ".$user["pwd"]." , Role : ".$user["role"]."</p>");
-			}
-			*/
-
-	/*		require_once(__DIR__.'/../models/UserModel.php');
-			$mod = new UserModel();
-			if($mod->connect("Rose", "RaggedyMan") == true){
-				echo("<h2> Hello ".$_SESSION['login']."</h2>");
-			}
-			else {
-				echo("<h2> Login failed </h2>");
-			}
-
+	// Gestion de la connection et deconnexion
+	function session(){
+		if($_SESSION['login']==null) {
+			$this->display('form_login', 'Connexion', NULL);
 		}
-		catch (Exception $e){
-			echo("Connection loupée");
-		}*/
+		else {
+			$this->display('form_logout', 'Deconnexion', NULL);
+		}
 	}
+
+
 }
