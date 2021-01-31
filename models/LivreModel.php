@@ -9,9 +9,8 @@ class LivreModel {
 		if($database!=null){
 			try{
 				//Verifie l'existance du livre dans la base de données
-				var_dump($this->getLivreByTitre($l->titre));
 				if($this->getLivreByTitre($l->titre)!=NULL){
-					echo("Livree déjà connue");
+					echo("Livre déjà connu");
 				}
 				else {
 					$insert = $database->query('INSERT INTO livre (titre, id_auteur) VALUES ("' .$l->titre. '", '.$l->auteur.')' );

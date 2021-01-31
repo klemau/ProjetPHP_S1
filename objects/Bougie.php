@@ -8,6 +8,7 @@ class Bougie {
 	public $livre; // Contient l'id du livre lié
 	public $collection; // Contient l'id de la collection liée
 	public $statut;
+	//public $events; //Contient les noms et id des évènements liées; A METTRE EN PLACE
 
 	function __construct($nom, $livre, $collection, $statut, $nom_livre=NULL,$nom_collection=NULL, $id=NULL){
 		$this->nom = $nom;

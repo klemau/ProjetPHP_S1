@@ -1,7 +1,6 @@
 <?php
-//namespace controllers;
+
 require_once('Controller.php');
-//require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class AccueilController extends Controller {
 	

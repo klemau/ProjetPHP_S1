@@ -32,10 +32,10 @@ class BougieModel {
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT nom_bougie,id_bougie,titre,nom_collection,statut_bougie,id_livre,id_collection 
-					FROM bougie NATURAL JOIN livre NATURAL JOIN collection WHERE id_bougie='".$id."'");
+					FROM bougie NATURAL JOIN livre NATURAL JOIN collection WHERE id_bougie=".$id);
 
 				if($result!=false){
-					$b = $result->fetch();$b = $result->fetch();				
+					$b = $result->fetch();				
 					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $b['id_bougie']);
 				}
 				else {
@@ -57,7 +57,7 @@ class BougieModel {
 					FROM bougie NATURAL JOIN livre NATURAL JOIN collection WHERE nom_bougie='".$nom."'");
 
 				if($result!=false){
-					$b = $result->fetch();$b = $result->fetch();				
+					$b = $result->fetch();				
 					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $b['id_bougie']);
 				}
 				else {

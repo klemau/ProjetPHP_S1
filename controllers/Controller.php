@@ -1,7 +1,5 @@
 <?php
 
-//namespace controllers;
-
 class Controller{
 	// FONCTION D'APPEL DE LA METHODE $action
 	function appel($action){
