@@ -31,7 +31,7 @@ class Controller{
 	protected function verifyConnection(){
 		require_once("./Models/UserModel.php");
 		$mod = new UserModel();
-
+		
 		if(isset($_POST["login"]) && isset($_POST["password"])) {
 			//si POST de login et de password existent, c'est qu'on arrive de Connexion
 			try {
@@ -48,7 +48,7 @@ class Controller{
 				echo("La connexion a rate");
 			}
 		}
-
+		
 		elseif (isset($_POST["submit"]) && $_POST["submit"]=="Se Deconnecter") {
 			//si POST submit est egal a "Se Deconnecter", c'est qu'on veut terminer la session
 				

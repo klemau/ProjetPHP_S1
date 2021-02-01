@@ -16,7 +16,7 @@ class AccueilController extends Controller {
 			$_POST = array();
 			$this->display('form_login', 'Connexion', "Erreur de connexion");
 		}
-		
+
 	}
 
 	//Provisoirement utilisée pour tester les affichages sur l'accueil. Les diverses listes auront leur propre page et Controller par la suite
