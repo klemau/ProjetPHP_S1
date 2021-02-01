@@ -1,4 +1,5 @@
 <?php
+namespace Framework\Object;
 
 class Collection {
 	public $nom;

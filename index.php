@@ -13,7 +13,7 @@ $controller=null;
 $action=null;
 $id=null;
 
-$router = new Router();
+$router = new Framework\Router();
 if(isset($_GET['controller'])){
 	$controller = $_GET['controller'];
 }

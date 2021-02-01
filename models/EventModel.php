@@ -1,11 +1,12 @@
 <?php
+namespace Framework\Model;
 include(__DIR__.'/../objects/Event.php');
 
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class EventModel {	
 	function create($e){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				//Verifie l'existance du livre dans la base de données
@@ -39,7 +40,7 @@ class EventModel {
 	
 
 	function getEventID($nom) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT id FROM event WHERE nom='".$nom."'");
@@ -59,7 +60,7 @@ class EventModel {
 	}
 
 	function getEventByID($id) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT name, id FROM event WHERE id=".$id);
@@ -79,7 +80,7 @@ class EventModel {
 						}
 					}					
 
-					$newE = new Event($e['name'], $bougies, $e['id']);
+					$newE = new \Framework\Object\Event($e['name'], $bougies, $e['id']);
 					return $newE;
 				}
 				else {
@@ -94,7 +95,7 @@ class EventModel {
 	}
 
 	function getEventByName($nom) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT name, id FROM event WHERE name='".$nom."'");
@@ -115,7 +116,7 @@ class EventModel {
 						}
 					}
 
-					$newE = new Event($e['name'], $bougies, $e['id']);
+					$newE = new \Framework\Object\Event($e['name'], $bougies, $e['id']);
 					var_dump($newE);
 					return $newE;
 				}
@@ -131,7 +132,7 @@ class EventModel {
 	}
 
 	function getListEvents(){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		$events = array();
 		if($database!=null){
 			try {

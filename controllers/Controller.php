@@ -1,10 +1,17 @@
 <?php
+namespace Framework\Controller;
 
 class Controller{
 	// FONCTION D'APPEL DE LA METHODE $action
 	function appel($action){
+		$id=$_POST['id'];
 		if(method_exists($this,$action)){
-			$this->{$action}();
+			if ($id!=null) {
+				$this->{$action}($id);
+			}
+			else {
+				$this->{$action}();
+			}
 		}
 	}	
 
@@ -30,8 +37,8 @@ class Controller{
 
 	protected function verifyConnection(){
 		require_once("./Models/UserModel.php");
-		$mod = new UserModel();
-		
+		$mod = new \Framework\Model\UserModel();
+
 		if(isset($_POST["login"]) && isset($_POST["password"])) {
 			//si POST de login et de password existent, c'est qu'on arrive de Connexion
 			try {
@@ -48,7 +55,7 @@ class Controller{
 				echo("La connexion a rate");
 			}
 		}
-		
+
 		elseif (isset($_POST["submit"]) && $_POST["submit"]=="Se Deconnecter") {
 			//si POST submit est egal a "Se Deconnecter", c'est qu'on veut terminer la session
 				

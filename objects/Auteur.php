@@ -1,4 +1,5 @@
 <?php
+namespace Framework\Object;
 
 class Auteur {
 	public $id;

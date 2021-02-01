@@ -1,5 +1,5 @@
 <?php
-
+namespace Framework\Controller;
 require_once('Controller.php');
 
 class AccueilController extends Controller {
@@ -16,13 +16,13 @@ class AccueilController extends Controller {
 			$_POST = array();
 			$this->display('form_login', 'Connexion', "Erreur de connexion");
 		}
-
+		
 	}
 
 	//Provisoirement utilisée pour tester les affichages sur l'accueil. Les diverses listes auront leur propre page et Controller par la suite
 	private function getUsers(){		
 		require_once(__DIR__.'/../models/UserModel.php');
-		$model = new UserModel();
+		$model = new \Framework\Model\UserModel();
 		return $model->getListUsers();
 	}
 
@@ -38,7 +38,7 @@ class AccueilController extends Controller {
 
 	function listeBougies(){ // Récupère et retourne une liste des toutes les bougies
 		require_once(__DIR__.'/../models/BougieModel.php');
-		$model = new BougieModel();
+		$model = new \Framework\Model\BougieModel();
 		//$model->create(new Bougie("Bougie test", 1, 1, 'validée'));
 		return $model->getListBougies();
 	}

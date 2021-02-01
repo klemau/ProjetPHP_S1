@@ -1,6 +1,5 @@
 <?php
-//namespace controllers;
-//require_once(__DIR__.'/../objects/Bougie.php');
+namespace Framework\Controller;
 require_once('Controller.php');
 
 class UserController extends Controller {
@@ -16,34 +15,29 @@ class UserController extends Controller {
 			$this->display('form_logout', 'Déconnexion', NULL);
 		}
 	*/
-		$this->display('listeUtilisateurs', 'Liste Utilisateurs', $this->listeUsers());
+		$this->display('liste', 'Liste Utilisateurs', $this->listeUsers());
 	}
-	
-	/*
-	public function login() {
-		try {
-			require_once(__DIR__.'/../models/UserModel.php');
-			$mod = new UserModel();
-			if(isset($_POST["login"]) && isset($_POST["password"]))
-			if($mod->connect($_POST["login"],$_POST["password"]) == true){
-				$_SESSION['login']=$_POST["login"];
-			}
-			else {
-				echo("<h2> Login failed </h2>");
-			}
-		}
-		catch (Exception $e){
-			echo("Connection loupée");
-		}
-	}
-
-	public function logout() {
-}
 
 	function listeUsers(){ // Récupère et retourne une liste des tous les utilisateurs présents dans la base de données
 		require_once(__DIR__.'/../models/UserModel.php');
-		$model = new UserModel();
+		$model = new \Framework\Model\UserModel();
 		return $model->getListUsers();
 	}
-	*/
+
+	function update($id){
+		//Test d'update ; A remplacer
+		require_once(__DIR__.'/../models/UserModel.php');
+		$model = new \Framework\Model\UserModel();
+		$u = new \Framework\Object\User('Donna', 3,1);
+		$model->updateUser($u);
+		$this->display('liste', 'Liste Utilisateurs', $this->listeUsers());
+	}
+
+	function delete($id){
+		//Test de delete ; A remplacer
+		require_once(__DIR__.'/../models/UserModel.php');
+		$model = new \Framework\Model\UserModel();
+		$model->deleteUser($id);
+		$this->display('liste', 'Liste Utilisateurs', $this->listeUsers());
+	}
 }

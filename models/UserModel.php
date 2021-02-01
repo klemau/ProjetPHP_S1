@@ -1,4 +1,5 @@
 <?php
+namespace Framework\Model;
 include(__DIR__.'/../objects/User.php');
 
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
@@ -6,7 +7,7 @@ require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 class UserModel {
 
 	function create($login, $pass, $role=0){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'"');
@@ -25,14 +26,54 @@ class UserModel {
 		}
 	}
 
+	function deleteUser($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM user WHERE id='.$id);
+				if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM user WHERE id='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+				}
+				else {
+					echo("Utilisateur inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function updateUser($u){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM user WHERE id='.$u->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query('UPDATE user SET role='.$u->role.' WHERE id='.$u->id);
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Utilisateur inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
 	function getUserByLogin($login) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'"');
 				if($result!=null){
 					$us = $result->fetch();
-					return new User($us['login'], $us['id'],$us['role']);
+					return new \Framework\Object\User($us['login'], $us['id'],$us['role']);
 				}
 			}
 			catch(Exception $e){
@@ -43,13 +84,13 @@ class UserModel {
 	}
 
 	function getUserByID($id) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM user WHERE id='.$id);
 				if($result!=null){
 					$us = $result->fetch();
-					return new User($us['login'], $us['id'],$us['role']);
+					return new \Framework\Object\User($us['login'], $us['id'],$us['role']);
 				}
 			}
 			catch(Exception $e){
@@ -60,7 +101,7 @@ class UserModel {
 	}
 
 	function connect($login, $pass){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try {
 				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'" AND pwd="'.$pass.'"');
@@ -79,7 +120,7 @@ class UserModel {
 	}
 
 	function getListUsers(){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		$users = [];
 		if($database!=null){
 			try {
@@ -87,7 +128,7 @@ class UserModel {
 				if($result!=null){
 					$us =$result->fetch();
 					while($us != NULL){
-						$user = new User($us['login'], $us['id'],$us['role']);
+						$user = new \Framework\Object\User($us['login'], $us['id'],$us['role']);
 						array_push($users, $user);
 						$us = $result->fetch();
 					}
