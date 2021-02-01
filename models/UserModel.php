@@ -9,8 +9,8 @@ class UserModel {
 		$database = DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				$user = $database->query('SELECT * FROM user WHERE login="'.$login.'"');
-				if($user!=null && $user->fetch()!=null){
+				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'"');
+				if($result!=null && $result->fetch()!=null){
 					echo("LOGIN DEJA PRIS");
 				}
 				else {
@@ -30,7 +30,7 @@ class UserModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM user WHERE login="'.$login.'"');
-				if($user!=null){
+				if($result!=null){
 					$us = $result->fetch();
 					return new User($us['login'], $us['id'],$us['role']);
 				}
@@ -47,7 +47,7 @@ class UserModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM user WHERE id='.$id);
-				if($user!=null){
+				if($result!=null){
 					$us = $result->fetch();
 					return new User($us['login'], $us['id'],$us['role']);
 				}

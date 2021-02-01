@@ -1,5 +1,6 @@
 <?php
 //namespace controllers;
+//require_once(__DIR__.'/../objects/Bougie.php');
 require_once('Controller.php');
 
 class UserController extends Controller {
@@ -37,7 +38,7 @@ class UserController extends Controller {
 	}
 
 	public function logout() {
-
+}
 
 	function listeUsers(){ // Récupère et retourne une liste des tous les utilisateurs présents dans la base de données
 		require_once(__DIR__.'/../models/UserModel.php');

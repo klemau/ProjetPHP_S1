@@ -1,20 +1,22 @@
 <?php
-//namespace controllers;
+
 require_once('Controller.php');
-//require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class AccueilController extends Controller {
 	
 	function index(){
-		if ($this->verifyConnection() || !isset($_POST['login'])){
+		if ($this->verifyConnection() || !isset($_POST['login'])){ 
 			$users = $this->getUsers();
 			$this->display('accueil', 'Accueil', $users);
 		}
-		else {
+
+		// Tentative d'accès à Accueil depuis Login avec des mauvais identifiants 
+		else { 
 			unset($_POST);
 			$_POST = array();
 			$this->display('form_login', 'Connexion', "Erreur de connexion");
 		}
+
 	}
 
 	//Provisoirement utilisée pour tester les affichages sur l'accueil. Les diverses listes auront leur propre page et Controller par la suite
@@ -32,7 +34,13 @@ class AccueilController extends Controller {
 		else {
 			$this->display('form_logout', 'Deconnexion', NULL);
 		}
-	}
+	}	
 
+	function listeBougies(){ // Récupère et retourne une liste des toutes les bougies
+		require_once(__DIR__.'/../models/BougieModel.php');
+		$model = new BougieModel();
+		//$model->create(new Bougie("Bougie test", 1, 1, 'validée'));
+		return $model->getListBougies();
+	}
 
 }
