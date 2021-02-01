@@ -59,6 +59,20 @@ class UserModel {
 		}
 	}
 
+	function deleteUserByID($id) {
+		$database = DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('DELETE user WHERE id='.$id);
+				return $result;
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
 	function connect($login, $pass){
 		$database = DatabaseConnection::getDatabase();
 		if($database!=null){

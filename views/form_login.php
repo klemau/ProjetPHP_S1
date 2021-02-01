@@ -3,9 +3,10 @@
 		echo "<h3>".$content."</h3>";
 	}
 ?>
-<form action="/Accueil" method="post">
+
+<form action="../Accueil" method="post">
   <div class="mb-3">
-  	<label for="login"> Login de l'utilisateur </label>
+  	<label for="login"> Identifiant </label>
 	<input type="input" name="login" /><br />
 </div>
 <div class="mb-3">

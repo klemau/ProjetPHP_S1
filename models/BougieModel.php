@@ -50,7 +50,7 @@ class BougieModel {
 						}
 					}
 
-					return new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
+					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
 				}
 				else {
 					return null;
@@ -85,7 +85,7 @@ class BougieModel {
 							$e=$resEvents->fetch();
 						}
 					}
-					return new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
+					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
 				}
 				else {
 					return null;
@@ -123,7 +123,7 @@ class BougieModel {
 							}
 						}
 
-						$bougie = new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $events, $b['id_bougie']);
+						$bougie = new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $events, $b['id_bougie']);
 						array_push($bougies, $bougie);
 						$b = $result->fetch();
 					}

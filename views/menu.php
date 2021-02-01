@@ -3,9 +3,13 @@
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="/Accueil">Accueil</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/User">Utilisateurs (Admin Only)</a>
-  </li>
+<?php if(isset($_SESSION['role']) && $_SESSION['role']==2)
+{
+  echo '<li class="nav-item">';
+  echo '<a class="nav-link" href="/User">Utilisateurs</a>';
+  echo '</li>';
+}
+?>
   <li class="nav-item">
     <a class="nav-link" href="/Bougie">Bougies</a>
   </li>
