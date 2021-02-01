@@ -35,8 +35,22 @@ class BougieModel {
 					FROM bougie NATURAL JOIN livre NATURAL JOIN collection WHERE id_bougie=".$id);
 
 				if($result!=false){
-					$b = $result->fetch();				
-					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $b['id_bougie']);
+					$b = $result->fetch();
+					$id=$b['id_bougie'];
+						
+					// Récupération des events liés
+					$events = array();
+					$resEvents = $database->query("SELECT id_event, name FROM events NATURAL JOIN event WHERE id_bougie=".$id);
+					if($resEvents!=NULL){
+						$e=$resEvents->fetch();
+						while($e!=NULL){
+							$event = array('id'=>$e['id_event'],'nom'=>$e['name']);
+							array_push($events,$event);
+							$e=$resEvents->fetch();
+						}
+					}
+
+					return new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
 				}
 				else {
 					return null;
@@ -57,8 +71,21 @@ class BougieModel {
 					FROM bougie NATURAL JOIN livre NATURAL JOIN collection WHERE nom_bougie='".$nom."'");
 
 				if($result!=false){
-					$b = $result->fetch();				
-					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $b['id_bougie']);
+					$b = $result->fetch();
+					$id=$b['id_bougie'];
+						
+					// Récupération des events liés
+					$events = array();
+					$resEvents = $database->query("SELECT id_event, name FROM events NATURAL JOIN event WHERE id_bougie=".$id);
+					if($resEvents!=NULL){
+						$e=$resEvents->fetch();
+						while($e!=NULL){
+							$event = array('id'=>$e['id_event'],'nom'=>$e['name']);
+							array_push($events,$event);
+							$e=$resEvents->fetch();
+						}
+					}
+					return new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
 				}
 				else {
 					return null;
@@ -82,7 +109,21 @@ class BougieModel {
 				if($result !=false){
 					$b = $result->fetch();
 					while($b != NULL){
-						$bougie = new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $b['id_bougie']);
+						$id=$b['id_bougie'];
+						
+						// Récupération des events liés
+						$events = array();
+						$resEvents = $database->query("SELECT id_event, name FROM events NATURAL JOIN event WHERE id_bougie=".$id);
+						if($resEvents!=NULL){
+							$e=$resEvents->fetch();
+							while($e!=NULL){
+								$event = array('id'=>$e['id_event'],'nom'=>$e['name']);
+								array_push($events,$event);
+								$e=$resEvents->fetch();
+							}
+						}
+
+						$bougie = new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'], $events, $b['id_bougie']);
 						array_push($bougies, $bougie);
 						$b = $result->fetch();
 					}

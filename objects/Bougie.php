@@ -8,9 +8,9 @@ class Bougie {
 	public $livre; // Contient l'id du livre lié
 	public $collection; // Contient l'id de la collection liée
 	public $statut;
-	//public $events; //Contient les noms et id des évènements liées; A METTRE EN PLACE
+	public $events; //Contient les noms et id des évènements liées; A METTRE EN PLACE
 
-	function __construct($nom, $livre, $collection, $statut, $nom_livre=NULL,$nom_collection=NULL, $id=NULL){
+	function __construct($nom, $livre, $collection, $statut, $nom_livre=NULL,$nom_collection=NULL, $events=NULL, $id=NULL){
 		$this->nom = $nom;
 		$this->id = $id;
 		$this->livre = $livre;
@@ -18,5 +18,6 @@ class Bougie {
 		$this->nom_collection = $nom_collection;
 		$this->collection = $collection;
 		$this->statut = $statut;
+		$this->events = $events;
 	}
 }
