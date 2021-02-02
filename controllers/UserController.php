@@ -42,11 +42,31 @@ class UserController extends Controller {
 	}
 
 	function delete($id){
-		//Test de delete ; A remplacer
 		require_once(__DIR__.'/../models/UserModel.php');
 		$model = new \Framework\Model\UserModel();
 		$model->deleteUser($id);
 		$this->display('listeUtilisateurs', 'Liste Utilisateurs', $this->listeUsers());
+	}
+
+	function create(){
+		require_once(__DIR__.'/../models/UserModel.php');
+		$model = new \Framework\Model\UserModel();
+		if(!isset($_POST['login']))
+		{
+			$this->display('form_createUser', 'S\'inscrire', NULL);
+		}
+		else
+		{
+			$login = $_POST['login'];
+			if($_POST['password'] == $_POST['passwordVerif'])
+			{
+				$pwd = $_POST['password'];
+			}
+			// var_dump($login);
+			// var_dump($pwd);
+			$model->create($login, $pwd);
+			$this->display('accueil', 'Bienvenue', NULL);
+		}
 	}
 
 }

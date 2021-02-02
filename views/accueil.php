@@ -39,11 +39,11 @@ else {
 }
 */
 // Accueil Provisoire
-echo '<ul>';
-foreach ($content as $user){
-    echo '<li> '.$user->login.' = '.$user->role.' ; ID = '.$user->id.'</li>';
-}
-echo '</ul>';
+// echo '<ul>';
+// foreach ($content as $user){
+//     echo '<li> '.$user->login.' = '.$user->role.' ; ID = '.$user->id.'</li>';
+// }
+// echo '</ul>';
 
 // Accueil Final : Hub pour accéder aux pages
 
