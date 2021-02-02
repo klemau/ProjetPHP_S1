@@ -28,7 +28,7 @@ class BougieModel {
 		}
 	}		
 
-	function deleteRecette($id){
+	function deleteBougie($id){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
@@ -40,6 +40,26 @@ class BougieModel {
 				}
 				else {
 					echo("Recette inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function updateBougie($bougie){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM bougie WHERE id_bougie='.$bougie->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query('UPDATE event SET nom_bougie="'.$bougie->nom.'", id_livre='.$bougie->livre.', id_collection='.$bougie->collection.', statut_bougie="'.$bougie->statut.'" WHERE id_bougie='.$bougie->id);
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Bougie inconnue");
 				}
 			}
 			catch(Exception $e){

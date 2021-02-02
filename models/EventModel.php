@@ -58,6 +58,26 @@ class EventModel {
 			}
 		}
 	}
+
+	function updateEvent($event){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM event WHERE id='.$event->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query('UPDATE event SET name="'.$event->nom.'" WHERE id='.$event->id);
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Event inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 	
 
 	function getEventID($nom) {
