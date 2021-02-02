@@ -19,7 +19,11 @@ echo "</tr>";
     echo '<tr>';
     echo '<td> #'.$event->id.'</td>';
     echo '<td> '.$event->nom.'</td>';
-    echo '<td> '.count($event->bougies).'</td>'; // A passer en liste des bougies
+    echo '<td><ul>';
+    foreach($event->bougies as $bougie){
+        echo '<li>'.$bougie['nom'].'</li>';
+    }
+    echo '</ul></td>'; 
     if($modif){
         echo "<td><form action=\"$url/Event/update/$event->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Modifier ".$event->nom."\"/></form></td>";
         echo "<td><form action=\"$url/Event/delete/$event->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$event->nom."\"/> </form></td>";
