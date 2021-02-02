@@ -5,21 +5,17 @@ include(__DIR__.'/../objects/Recette.php');
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class RecetteModel {	
-	/*
-	function create($b){
+	function create($recette){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				//Verifie l'existance de la bougie dans la base de données
-				var_dump($this->getBougieByNom($b->nom));
-				if($this->getBougieByNom($b->nom)!=NULL){
-					echo("Bougie déjà connue");
+				$result = $database->query('SELECT * FROM recette WHERE id_bougie='.$recette->bougie.' AND id_odeur='.$recette->odeur);
+				if($result!=null && $result->fetch()!=null){
+					echo("RECETTE DEJA CONNUE");
 				}
 				else {
-					$insert = $database->query('INSERT INTO bougie (nom_bougie, id_livre, id_collection, statut_bougie) 
-						VALUES ("' .$b->nom. '", '.$b->livre.', '.$b->collection.', "'.$b->statut.'")' );
-
-					if($insert != false ) echo("Insertion effectuee");
+					$insert = $database->query(utf8_encode('INSERT INTO recette (id_bougie, id_odeur, quantité) VALUES ('.$recette->bougie.', '.$recette->odeur.','.$recette->quantite.')'));
+					if($insert->fetch() != null ) echo("Ajout effectué");
 				}
 			}
 			catch(Exception $e){
@@ -28,7 +24,46 @@ class RecetteModel {
 			}
 		}
 	}
-	*/
+
+	function deleteRecette($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM recette WHERE id_recette='.$id);
+				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM recette WHERE id_recette='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+				}
+				else {
+					echo("Recette inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function updateRecette($recette){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM recette WHERE id_recette='.$recette->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query(utf8_encode('UPDATE recette SET id_bougie='.$recette->bougie.', id_odeur='.$recette->odeur.', quantité='.$recette->quantite' WHERE id_recette='.$recette->id));
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Recette inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 
 	function getRecetteByID($id) {
 		$database = \Framework\DatabaseConnection::getDatabase();

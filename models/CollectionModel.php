@@ -5,21 +5,17 @@ include(__DIR__.'/../objects/Collection.php');
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class CollectionModel {	
-	/*
-	function create($b){
+	function create($collection){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				//Verifie l'existance de la bougie dans la base de données
-				var_dump($this->getBougieByNom($b->nom));
-				if($this->getBougieByNom($b->nom)!=NULL){
-					echo("Bougie déjà connue");
+				$result = $database->query('SELECT * FROM collection WHERE nom_collection="'.$collection->nom.'"');
+				if($result!=null && $result->fetch()!=null){
+					echo("COLLECTION DEJA CONNUE");
 				}
 				else {
-					$insert = $database->query('INSERT INTO bougie (nom_bougie, id_livre, id_collection, statut_bougie) 
-						VALUES ("' .$b->nom. '", '.$b->livre.', '.$b->collection.', "'.$b->statut.'")' );
-
-					if($insert != false ) echo("Insertion effectuee");
+					$insert = $database->query('INSERT INTO collection (nom_collection) VALUES ("'.$collection->nom.'")' );
+					if($insert->fetch() != null ) echo("Ajout effectué");
 				}
 			}
 			catch(Exception $e){
@@ -28,7 +24,46 @@ class CollectionModel {
 			}
 		}
 	}
-	*/
+
+	function deleteCollection($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM collection WHERE id_collection='.$id);
+				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM collection WHERE id_collection='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+				}
+				else {
+					echo("Collection inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function updateCollection($collection){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM collection WHERE id_collection='.$collection->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query('UPDATE collection SET nom_collection="'.$collection->nom.'" WHERE id_collection='.$collection->id);
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Collection inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 
 	function getCollectionByID($id) {
 		$database = \Framework\DatabaseConnection::getDatabase();

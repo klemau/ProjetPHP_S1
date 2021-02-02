@@ -25,6 +25,46 @@ class LivreModel {
 		}
 	}
 
+	function deleteLivre($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM  livre WHERE id_livre='.$id);
+				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM livre WHERE id_livre='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+				}
+				else {
+					echo("livre inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function updateLivre($livre){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM livre WHERE id_livre='.$livre->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query('UPDATE livre SET titre="'.$livre->titre.', id_auteur='.$livre->auteur.'" WHERE id_livre='.$livre->id);
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Livre inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
 	function getLivreByID($id) {
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){

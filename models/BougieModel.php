@@ -26,7 +26,28 @@ class BougieModel {
 				die();
 			}
 		}
-	}	
+	}		
+
+	function deleteRecette($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM bougie WHERE id_bougie='.$id);
+				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM bougie WHERE id_bougie='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+					$database->query('DELETE FROM events WHERE id_bougie='.$id);
+				}
+				else {
+					echo("Recette inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 
 	function getBougieByID($id) {
 		$database = \Framework\DatabaseConnection::getDatabase();

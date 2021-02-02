@@ -6,21 +6,17 @@ include(__DIR__.'/../objects/Auteur.php');
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class AuteurModel {	
-	/*
-	function create($b){
+	function create($auteur){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				//Verifie l'existance de la bougie dans la base de données
-				var_dump($this->getBougieByNom($b->nom));
-				if($this->getBougieByNom($b->nom)!=NULL){
-					echo("Bougie déjà connue");
+				$result = $database->query('SELECT * FROM auteur WHERE nom_auteur="'.$auteur->nom.'"');
+				if($result!=null && $result->fetch()!=null){
+					echo("AUTEUR DEJA CONNU");
 				}
 				else {
-					$insert = $database->query('INSERT INTO bougie (nom_bougie, id_livre, id_collection, statut_bougie) 
-						VALUES ("' .$b->nom. '", '.$b->livre.', '.$b->collection.', "'.$b->statut.'")' );
-
-					if($insert != false ) echo("Insertion effectuee");
+					$insert = $database->query('INSERT INTO auteur (nom_auteur) VALUES ("'.$auteur->nom.'")' );
+					if($insert->fetch() != null ) echo("Ajout effectué");
 				}
 			}
 			catch(Exception $e){
@@ -29,7 +25,46 @@ class AuteurModel {
 			}
 		}
 	}
-	*/
+
+	function deleteAuteur($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM auteur WHERE id_auteur='.$id);
+				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM auteur WHERE id_auteur='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+				}
+				else {
+					echo("Auteur inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
+	function updateAuteur($collection){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM auteur WHERE id_auteur='.$auteur->id);
+				if($result!=false && $result->fetch()!=null){
+					$update = $database->query('UPDATE collection SET nom_auteur="'.$auteur->nom.'" WHERE id_auteur='.$auteur->id);
+					if($update!= false ) echo("Modification effectuée");
+				}
+				else {
+					echo("Auteur inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 
 	function getAuteurByID($id) {
 		$database = \Framework\DatabaseConnection::getDatabase();
