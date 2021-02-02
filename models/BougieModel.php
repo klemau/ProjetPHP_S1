@@ -62,7 +62,7 @@ class BougieModel {
 						
 					// Récupération des events liés
 					$events = array();
-					$resEvents = $database->query("SELECT id_event, name FROM events NATURAL JOIN event WHERE id_bougie=".$id);
+					$resEvents = $database->query("SELECT id_event, name FROM events INNER JOIN event ON event.id=events.id_event WHERE id_bougie=".$id);
 					if($resEvents!=NULL){
 						$e=$resEvents->fetch();
 						while($e!=NULL){
@@ -98,7 +98,7 @@ class BougieModel {
 						
 					// Récupération des events liés
 					$events = array();
-					$resEvents = $database->query("SELECT id_event, name FROM events NATURAL JOIN event WHERE id_bougie=".$id);
+					$resEvents = $database->query("SELECT id_event, name FROM events INNER JOIN event ON event.id=events.id_event WHERE id_bougie=".$id);
 					if($resEvents!=NULL){
 						$e=$resEvents->fetch();
 						while($e!=NULL){
@@ -135,7 +135,7 @@ class BougieModel {
 						
 						// Récupération des events liés
 						$events = array();
-						$resEvents = $database->query("SELECT id_event, name FROM events NATURAL JOIN event WHERE id_bougie=".$id);
+						$resEvents = $database->query("SELECT id_event, name FROM events INNER JOIN event ON event.id=events.id_eventt WHERE id_bougie=".$id);
 						if($resEvents!=NULL){
 							$e=$resEvents->fetch();
 							while($e!=NULL){
