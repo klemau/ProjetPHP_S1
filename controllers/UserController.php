@@ -24,12 +24,20 @@ class UserController extends Controller {
 
 
 	function update($id){
-		//Test d'update ; A remplacer
 		require_once(__DIR__.'/../models/UserModel.php');
 		$model = new \Framework\Model\UserModel();
-		$u = new \Framework\Object\User('Donna', 3,1);
-		$model->updateUser($u);
-		$this->display('liste', 'Liste Utilisateurs', $this->listeUsers());
+		$user = $model->getUserByID($id);
+		if(!isset($_POST['role']))
+		{
+			$this->display('form_updateUser', 'Modifier un utilisateur', $user);
+		}
+		else
+		{
+			$role = $_POST['role'];
+			$u = new \Framework\Object\User($user->login, $user->id, $role);
+			$model->updateUser($u);
+			$this->display('listeUtilisateurs', 'Liste Utilisateurs', $this->listeUsers());
+		}
 	}
 
 	function delete($id){
@@ -37,7 +45,7 @@ class UserController extends Controller {
 		require_once(__DIR__.'/../models/UserModel.php');
 		$model = new \Framework\Model\UserModel();
 		$model->deleteUser($id);
-		$this->display('liste', 'Liste Utilisateurs', $this->listeUsers());
+		$this->display('listeUtilisateurs', 'Liste Utilisateurs', $this->listeUsers());
 	}
 
 }
