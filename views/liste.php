@@ -8,7 +8,9 @@ if($content!=null){
     $variables = get_object_vars($object);
 
     //Get class name without namespace
-    $classname = end(explode('\\',get_class($object)));
+    $slash = "/";
+    $explode = explode("\\",get_class($object));
+    $classname = end($explode);
 
     foreach ($variables as $key=>$value){
         if($key!='id')  echo '<td>'.$key.'</td>';
