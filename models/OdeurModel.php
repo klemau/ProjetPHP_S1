@@ -15,7 +15,7 @@ class OdeurModel {
 				}
 				else {
 					$insert = $database->query('INSERT INTO odeur (nom_odeur, statut_odeur) VALUES ("'.$odeur->nom.'", "'.$odeur->statut.'")' );
-					if($insert->fetch() != null ) echo("Ajout effectué");
+					if($insert!=false ) echo("Ajout effectué");
 				}
 			}
 			catch(Exception $e){

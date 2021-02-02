@@ -9,13 +9,14 @@ class RecetteModel {
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
+				var_dump($recette);
 				$result = $database->query('SELECT * FROM recette WHERE id_bougie='.$recette->bougie.' AND id_odeur='.$recette->odeur);
 				if($result!=null && $result->fetch()!=null){
 					echo("RECETTE DEJA CONNUE");
 				}
 				else {
 					$insert = $database->query(utf8_encode('INSERT INTO recette (id_bougie, id_odeur, quantité) VALUES ('.$recette->bougie.', '.$recette->odeur.','.$recette->quantite.')'));
-					if($insert->fetch() != null ) echo("Ajout effectué");
+					if($insert != false ) echo("Ajout effectué");
 				}
 			}
 			catch(Exception $e){
@@ -30,9 +31,9 @@ class RecetteModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM recette WHERE id_recette='.$id);
-				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+				if($result!=null && $result->fetch()!=null){
 					$delete = $database->query('DELETE FROM recette WHERE id_recette='.$id);
-					if($delete->fetch() != null ) echo("suppression effectuée");
+					if($delete!= false ) echo("suppression effectuée");
 				}
 				else {
 					echo("Recette inconnue");
@@ -51,7 +52,7 @@ class RecetteModel {
 			try{
 				$result = $database->query('SELECT * FROM recette WHERE id_recette='.$recette->id);
 				if($result!=false && $result->fetch()!=null){
-					$update = $database->query(utf8_encode('UPDATE recette SET id_bougie='.$recette->bougie.', id_odeur='.$recette->odeur.', quantité='.$recette->quantite' WHERE id_recette='.$recette->id));
+					$update = $database->query(utf8_encode('UPDATE recette SET id_bougie='.$recette->bougie.', id_odeur='.$recette->odeur.', quantité='.$recette->quantite.' WHERE id_recette='.$recette->id));
 					if($update!= false ) echo("Modification effectuée");
 				}
 				else {

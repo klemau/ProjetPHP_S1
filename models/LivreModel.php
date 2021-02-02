@@ -14,7 +14,9 @@ class LivreModel {
 					echo("Livre déjà connu");
 				}
 				else {
-					$insert = $database->query('INSERT INTO livre (titre, id_auteur) VALUES ("' .$l->titre. '", '.$l->auteur.')' );
+					var_dump($l->auteur);
+					$insert = $database->query('INSERT INTO livre (titre, id_auteur) VALUES ("'.$l->titre.'", '.$l->auteur.')' );
+					var_dump($insert);
 					if($insert != false ) echo("Insertion effectuee");
 				}
 			}
@@ -30,7 +32,7 @@ class LivreModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM  livre WHERE id_livre='.$id);
-				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+				if($result!=null && $result->fetch()!=null){
 					$delete = $database->query('DELETE FROM livre WHERE id_livre='.$id);
 					if($delete->fetch() != null ) echo("suppression effectuée");
 				}
@@ -89,9 +91,10 @@ class LivreModel {
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				$result = $database->query("SELECT titre,id_livre,id_auteur,nom_auteur FROM livre NATURAL JOIN auteur WHERE titre=".$titre);
+				$result = $database->query("SELECT * FROM livre NATURAL JOIN auteur WHERE titre=\"$titre\"");
 				if($result!=false){
 					$l = $result->fetch();
+					var_dump($l);
 					return new \Framework\Object\Livre($l['titre'], $l['id_auteur'], $l['nom_auteur'], $l['id_livre']);
 				}
 				else {

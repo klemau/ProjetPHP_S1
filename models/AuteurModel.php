@@ -31,7 +31,7 @@ class AuteurModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM auteur WHERE id_auteur='.$id);
-				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+				if($result!=null && $result->fetch()!=null){
 					$delete = $database->query('DELETE FROM auteur WHERE id_auteur='.$id);
 					if($delete->fetch() != null ) echo("suppression effectuée");
 				}

@@ -1,5 +1,5 @@
 <table class="table table-hover">
-<tr><th> # </th><th> Nom </th><th> Statut </th><th>
+<tr><th> # </th><th> Nom </th><th> Statut </th>
 
 <?php
 global $url;

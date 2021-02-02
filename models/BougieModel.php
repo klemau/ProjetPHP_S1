@@ -33,7 +33,7 @@ class BougieModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM bougie WHERE id_bougie='.$id);
-				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+				if($result!=null && $result->fetch()!=null){
 					$delete = $database->query('DELETE FROM bougie WHERE id_bougie='.$id);
 					if($delete->fetch() != null ) echo("suppression effectuée");
 					$database->query('DELETE FROM events WHERE id_bougie='.$id);
