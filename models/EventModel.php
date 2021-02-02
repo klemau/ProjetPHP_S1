@@ -78,6 +78,28 @@ class EventModel {
 			}
 		}
 	}
+
+	function changeBougieLinks($id, $bougies){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM event WHERE id='.$id);
+				if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM events WHERE id_event='.$id);
+					foreach($bougies as $idB){
+						$update = $database->query("INSERT INTO events (id_event, id_bougie) VALUES ($id,$idB)");
+					}
+				}
+				else {
+					echo("Event inconnu");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 	
 
 	function getEventID($nom) {

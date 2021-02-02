@@ -69,6 +69,28 @@ class BougieModel {
 		}
 	}
 
+	function changeEventLinks($id, $events){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM bougie WHERE id_bougie='.$id);
+				if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM events WHERE id_bougie='.$id);
+					foreach($events as $idE){
+						$update = $database->query("INSERT INTO events (id_event, id_bougie) VALUES ($idE,$id)");
+					}
+				}
+				else {
+					echo("Bougie inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
+
 	function getBougieByID($id) {
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
