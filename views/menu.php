@@ -37,9 +37,6 @@ global $url;
         <a class="nav-link" href=<?php echo $url."/Collection"?>>Collections</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=<?php echo $url."/Stat"?>>Stats</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href=<?php echo $url."/Accueil/Session"?>><?php if($_SESSION['login']==null){echo "Connexion";}else{echo $_SESSION['login']." [Déconnexion]";} ?></a>
       </li>
       <?php if(!isset($_SESSION['role']))
