@@ -5,7 +5,7 @@ require_once('Controller.php');
 class LivreController extends Controller {
 	
 	function index(){
-		$this->display('liste', 'Liste Livres', $this->getLivres());
+		$this->display('listeLivres', 'Liste Livres', $this->getLivres());
 	}	
 
 	function getLivres(){ // Récupère et retourne une liste des toutes les bougies

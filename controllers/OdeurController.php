@@ -5,7 +5,7 @@ require_once('Controller.php');
 class OdeurController extends Controller {
 	
 	function index(){
-		$this->display('liste', 'Liste odeurs', $this->getOdeurs());
+		$this->display('listeOdeurs', 'Liste odeurs', $this->getOdeurs());
 	}	
 
 	function getOdeurs(){ // Récupère et retourne une liste des tous les évènements

@@ -1,10 +1,11 @@
 <?php 
+global $url;
 	if($content != NULL){
 		echo "<h3>".$content."</h3>";
 	}
 ?>
 
-<form action="../Accueil" method="post">
+<form action=<?php echo $url."/Accueil"?> method="post">
   <div class="mb-3">
   	<label for="login"> Identifiant </label>
 	<input type="input" name="login" /><br />
