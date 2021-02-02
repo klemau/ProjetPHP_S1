@@ -37,6 +37,27 @@ class EventModel {
 		}
 	}
 
+	function deleteEvent($id){
+		$database = \Framework\DatabaseConnection::getDatabase();
+		if($database!=null){
+			try{
+				$result = $database->query('SELECT * FROM event WHERE id='.$id);
+				if($result!=null && $result->fetch()!=null){if($result!=false && $result->fetch()!=null){
+					$delete = $database->query('DELETE FROM event WHERE id='.$id);
+					if($delete->fetch() != null ) echo("suppression effectuée");
+
+					$database->query('DELETE FROM events WHERE id_event='.$id)
+				}
+				else {
+					echo("Event inconnue");
+				}
+			}
+			catch(Exception $e){
+				var_dump($e->getMessage());
+				die();
+			}
+		}
+	}
 	
 
 	function getEventID($nom) {

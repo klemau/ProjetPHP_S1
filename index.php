@@ -1,6 +1,20 @@
 <?php
 include 'Lib/Router.php';
 
+// Définition de la racine pour les liens
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+{
+    $url = "https";
+}
+else
+{
+    $url = "http"; 
+}  
+$url .= "://"; 
+$url .= $_SERVER['HTTP_HOST'];
+
+$GLOBALS['url']=$url;
+
 session_start();
 
 if(! isset($_SESSION['login']))

@@ -4,7 +4,7 @@
 	}
 ?>
 
-<form action="../User/create" method="post">
+<form action=<?php echo $url."/User/Create"?> method="post">
   <div class="mb-3">
   	<label for="login"> Identifiant </label>
 	<input type="input" name="login" /><br />

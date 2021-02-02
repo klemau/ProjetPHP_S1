@@ -5,7 +5,7 @@ require_once('Controller.php');
 class RecetteController extends Controller {
 	
 	function index(){
-		$this->display('liste', 'Liste Recettes', $this->getRecettes());
+		$this->display('listeRecettes', 'Liste Recettes', $this->getRecettes());
 	}	
 
 	function getRecettes(){ // Récupère et retourne une liste des tous les évènements

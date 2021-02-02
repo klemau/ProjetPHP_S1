@@ -5,7 +5,7 @@ require_once('Controller.php');
 class AuteurController extends Controller {
 	
 	function index(){
-		$this->display('liste', 'Liste Auteurs', $this->getAuteurs());
+		$this->display('listeAuteurs', 'Liste Auteurs', $this->getAuteurs());
 	}	
 
 	function getAuteurs(){ // Récupère et retourne une liste des toutes les bougies

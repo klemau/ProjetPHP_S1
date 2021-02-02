@@ -5,7 +5,7 @@ require_once('Controller.php');
 class CollectionController extends Controller {
 	
 	function index(){
-		$this->display('liste', 'Liste Collections', $this->getCollections());		
+		$this->display('listeCollections', 'Liste Collections', $this->getCollections());		
 	}
 
 	private function getCollections(){		

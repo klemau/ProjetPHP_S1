@@ -1,22 +1,24 @@
-<?php 
+<table class="table table-hover">
+<tr><th> # </th><th> Nom </th>
 
-// echo '<ul>';
-
-// foreach ($content as $collection){
-//     echo '<li> '.$collection->nom.' = '.$collection->id.'</li>';
-// }
-// echo '</ul>';
-
+<?php
+global $url;
+$modif = isset($_SESSION['role']) && $_SESSION['role']>0;
+if($modif) {
+    echo "<th> Modifier </th><th> Supprimer </th>";
+}
+echo "</tr>";
 ?>
 
-<table class="table table-hover">
-<tr><th> # </th><th> Nom </th><th> Modifier </th><th> Supprimer </th></tr>
-
-<?php foreach ($content as $collection){
+<?php
+foreach ($content as $collection){
     echo '<tr>';
     echo '<td> #'.$collection->id.'</td>';
     echo '<td> '.$collection->nom.'</td>';
-    echo "<td><form action=\"../Collection/update/$collection->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Modifier ".$collection->nom."\"/></form></td>";
-    echo "<td><form action=\"../Collection/delete/$collection->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$collection->nom."\"/> </form></td></tr>";
-} ?>
+    if($modif){
+        echo "<td><form action=\"$url/Collection/update/$collection->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Modifier ".$collection->nom."\"/></form></td>";
+        echo "<td><form action=\"$url/Collection/delete/$collection->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$collection->nom."\"/> </form></td></tr>";
+    }
+}
+?>
 </table>
