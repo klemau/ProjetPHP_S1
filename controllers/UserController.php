@@ -58,9 +58,14 @@ class UserController extends Controller {
 		else
 		{
 			$login = $_POST['login'];
-			if($_POST['password'] == $_POST['passwordVerif'])
+			if($_POST['password'] == $_POST['passwordVerif']) // vérifie si les deux mots de passe sont identiques
 			{
 				$pwd = $_POST['password'];
+			}
+			else
+			{
+				echo "Les deux mot de passe sont différents.";
+				$this->display('form_createUser', 'S\'inscrire', NULL);
 			}
 			// var_dump($login);
 			// var_dump($pwd);

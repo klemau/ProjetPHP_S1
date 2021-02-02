@@ -9,13 +9,12 @@
 		$modo_status = 'unchecked';
 		$user_status = 'unchecked';
 
+		//regarde quel est le rôle de base de l'utilisateur
 		if ($role == 2) {
 			$admin_status = 'checked';
 		} else if ($role == 1) {
 			$modo_status = 'checked';
-		}
-		else
-		{
+		} else {
 			$user_status = 'checked';
 		}
 		echo "<h3> Modifier ".$login."</h3>";
