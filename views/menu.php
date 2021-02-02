@@ -2,11 +2,11 @@
 global $url;
 ?>
 
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="/Accueil">Accueil</a>
-  </li>
-
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/Accueil">Accueil</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-2">
 <?php if(isset($_SESSION['role']) && $_SESSION['role']==2)
 {
     echo '<li class="nav-item">';
