@@ -72,7 +72,7 @@ class BougieModel {
 						}
 					}
 
-					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
+					return new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
 				}
 				else {
 					return null;

@@ -23,4 +23,34 @@ class BougieController extends Controller {
 
 	}
 
+	function link($id)
+	{
+		require_once(__DIR__.'/../models/BougieModel.php');
+		$model = new \Framework\Model\BougieModel();
+		require_once(__DIR__.'/../models/EventModel.php');
+		$modelEvent = new \Framework\Model\EventModel();
+		$bougie = $model->getBougieByID($id);
+		if(!isset($_POST['tabLink']))
+		{
+			$this->display('form_linkBougieEvent', 'Lier', array("bougie" => $bougie, "events" => $modelEvent->getListEvents()));
+		}
+		else
+		{
+			$login = $_POST['login'];
+			if($_POST['password'] == $_POST['passwordVerif']) // vérifie si les deux mots de passe sont identiques
+			{
+				$pwd = $_POST['password'];
+			}
+			else
+			{
+				echo "Les deux mot de passe sont différents.";
+				$this->display('form_createUser', 'S\'inscrire', NULL);
+			}
+			// var_dump($login);
+			// var_dump($pwd);
+			$model->create($login, $pwd);
+			$this->display('accueil', 'Bienvenue', NULL);
+		}
+	}
+
 }

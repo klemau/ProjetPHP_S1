@@ -5,7 +5,7 @@
 global $url;
 $modif = isset($_SESSION['role']) && $_SESSION['role']>0;
 if($modif) {
-    echo "<th> Modifier </th><th> Supprimer </th>";
+    echo "<th> Modifier </th><th> Supprimer </th><th> Lier à un événement </th>";
 }
 echo "</tr>";
 ?>
@@ -18,7 +18,8 @@ foreach ($content as $bougie){
     echo '<td> '.$bougie->nom_livre.'</td>';
     if($modif){
         echo "<td><form action=\"$url/Bougie/update/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Modifier ".$bougie->nom."\"/></form></td>";
-        echo "<td><form action=\"$url/Bougie/delete/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$bougie->nom."\"/> </form></td></tr>";
+        echo "<td><form action=\"$url/Bougie/delete/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$bougie->nom."\"/> </form></td>";
+        echo "<td><form action=\"$url/Bougie/link/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Lier ".$bougie->nom."\"/> </form></td></tr>";
     }
 }
 ?>
