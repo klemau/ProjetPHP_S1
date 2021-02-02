@@ -1,4 +1,5 @@
 <?php
+namespace Framework\Object;
 
 class Event {
 	public $id;

@@ -1,11 +1,12 @@
 <?php
+namespace Framework\Model;
 include(__DIR__.'/../objects/Livre.php');
 
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class LivreModel {	
 	function create($l){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				//Verifie l'existance du livre dans la base de données
@@ -25,13 +26,13 @@ class LivreModel {
 	}
 
 	function getLivreByID($id) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT titre,id_livre,id_auteur,nom_auteur FROM livre NATURAL JOIN auteur WHERE id_livre=".$id);
 				if($result!=false){
 					$l = $result->fetch();
-					return new Livre($l['titre'], $l['id_auteur'], $l['nom_auteur'], $l['id_livre']);
+					return new \Framework\Object\Livre($l['titre'], $l['id_auteur'], $l['nom_auteur'], $l['id_livre']);
 				}
 				else {
 					return null;
@@ -45,13 +46,13 @@ class LivreModel {
 	}
 
 	function getLivreByTitre($titre) {
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT titre,id_livre,id_auteur,nom_auteur FROM livre NATURAL JOIN auteur WHERE titre=".$titre);
 				if($result!=false){
 					$l = $result->fetch();
-					return new Livre($l['titre'], $l['id_auteur'], $l['nom_auteur'], $l['id_livre']);
+					return new \Framework\Object\Livre($l['titre'], $l['id_auteur'], $l['nom_auteur'], $l['id_livre']);
 				}
 				else {
 					return null;
@@ -65,7 +66,7 @@ class LivreModel {
 	}
 
 	function getListLivres(){
-		$database = DatabaseConnection::getDatabase();
+		$database = \Framework\DatabaseConnection::getDatabase();
 		$livres = array();
 		if($database!=null){
 			try {
@@ -74,7 +75,7 @@ class LivreModel {
 				if($result !=false){
 					$l = $result->fetch();
 					while($l != NULL){
-						$livre = new Livre($l['titre'], $l['id_auteur'], $l["nom_auteur"], $l['id_livre']);
+						$livre = new \Framework\Object\Livre($l['titre'], $l['id_auteur'], $l["nom_auteur"], $l['id_livre']);
 						array_push($livres, $livre);
 						$l = $result->fetch();
 					}

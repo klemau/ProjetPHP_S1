@@ -1,5 +1,5 @@
 <?php
-//namespace Lib;
+namespace Framework;
 
 class Router
 {
@@ -11,17 +11,18 @@ class Router
 		if($controller=='' || $controller==null){
 			$controller='Accueil';
 		}
-		$controllerName = $controller.'Controller'; // $controllerName='BougieController.php';
+		$controllerName =$controller.'Controller'; // $controllerName='BougieController.php';
+		
 		if(file_exists('controllers/'.$controllerName.'.php')){
-
 			require_once('controllers/'.$controllerName.'.php');
-			$cont = new $controllerName();	
+			$controllerName="Framework\\Controller\\".$controllerName;
+			$cont = new $controllerName();
 
 			//Appel méthode $action 
 			if($action=='' || $action==null){
 				$action='index';
 			}
-
+			$_POST['id']=$id;
 			$cont->Appel($action);
 		}
 	}
