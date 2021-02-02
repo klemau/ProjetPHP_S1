@@ -1,11 +1,16 @@
+<?php 
+global $url;
+
+echo "<form action=\"$url/Event/create\" method=\"post\"><input type=\"submit\" class=\"btn btn-info\" name=\"submit\" value=\"Ajouter un Event\"/></form>";
+?>
+
 <table class="table table-hover">
-<tr><th> # </th><th> Nom </th><th> Nombre de bougies liées </th>
+<tr><th> # </th><th> Nom </th><th> Bougies liées </th>
 
 <?php
-global $url;
 $modif = isset($_SESSION['role']) && $_SESSION['role']>0;
 if($modif) {
-    echo "<th> Modifier </th><th> Supprimer </th>";
+    echo "<th> Modifier </th><th> Supprimer </th><th> Ajouter une bougie </th>";
 }
 echo "</tr>";
 ?>
@@ -14,10 +19,11 @@ echo "</tr>";
     echo '<tr>';
     echo '<td> #'.$event->id.'</td>';
     echo '<td> '.$event->nom.'</td>';
-    echo '<td> '.count($event->bougies).'</td>';
+    echo '<td> '.count($event->bougies).'</td>'; // A passer en liste des bougies
     if($modif){
         echo "<td><form action=\"$url/Event/update/$event->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Modifier ".$event->nom."\"/></form></td>";
-        echo "<td><form action=\"$url/Event/delete/$event->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$event->nom."\"/> </form></td></tr>";
+        echo "<td><form action=\"$url/Event/delete/$event->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$event->nom."\"/> </form></td>";
+        echo "<td><form action=\"$url/Event/link/$event->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Ajouter une bougie\"/></form></td></tr>";
     }
 } 
 ?>

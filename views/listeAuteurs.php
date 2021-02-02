@@ -1,8 +1,13 @@
+<?php 
+global $url;
+
+echo "<form action=\"$url/Auteur/create\" method=\"post\"><input type=\"submit\" class=\"btn btn-info\" name=\"submit\" value=\"Ajouter un Event\"/></form>";
+?>
+
 <table class="table table-hover">
 <tr><th> # </th><th> Nom </th>
 
 <?php
-global $url;
 $modif = isset($_SESSION['role']) && $_SESSION['role']>0;
 if($modif) {
     echo "<th> Modifier </th><th> Supprimer </th>";
