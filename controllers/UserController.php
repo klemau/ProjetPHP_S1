@@ -33,7 +33,8 @@ class UserController extends Controller {
 		}
 		else
 		{
-			$role = $_POST['role'];
+			$role = (int) $_POST['role'];
+			var_dump($role);
 			$u = new \Framework\Object\User($user->login, $user->id, $role);
 			$model->updateUser($u);
 			$this->display('listeUtilisateurs', 'Liste Utilisateurs', $this->listeUsers());

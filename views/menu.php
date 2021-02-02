@@ -37,4 +37,11 @@
   <li class="nav-item">
     <a class="nav-link" href="/Accueil/session"><?php if($_SESSION['login']==null){echo "Connexion";}else{echo $_SESSION['login']." [Déconnexion]";} ?></a>
   </li>
+  <?php if(!isset($_SESSION['role']))
+{
+  echo '<li class="nav-item">';
+  echo '<a class="nav-link" href="/User/create">S\'inscrire</a>';
+  echo '</li>';
+}
+?>
 </ul>
