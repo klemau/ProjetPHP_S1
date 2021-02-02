@@ -32,6 +32,9 @@
     <a class="nav-link" href="/Collection">Collections</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="/Stats">Stats</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="/Accueil/session"><?php if($_SESSION['login']==null){echo "Connexion";}else{echo $_SESSION['login']." [Déconnexion]";} ?></a>
   </li>
 </ul>
