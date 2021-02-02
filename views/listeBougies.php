@@ -19,7 +19,7 @@ foreach ($content as $bougie){
     if($modif){
         echo "<td><form action=\"$url/Bougie/update/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-primary\" name=\"submit\" value=\"Modifier ".$bougie->nom."\"/></form></td>";
         echo "<td><form action=\"$url/Bougie/delete/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Supprimer ".$bougie->nom."\"/> </form></td>";
-        echo "<td><form action=\"$url/Bougie/link/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-danger\" name=\"submit\" value=\"Lier ".$bougie->nom."\"/> </form></td></tr>";
+        echo "<td><form action=\"$url/Bougie/link/$bougie->id\" method=\"post\"><input type=\"submit\" class=\"btn btn-warning\" name=\"submit\" value=\"Ajouter un event\"/> </form></td></tr>";
     }
 }
 ?>

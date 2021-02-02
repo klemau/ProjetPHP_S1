@@ -18,20 +18,7 @@ global $url;
 		foreach ($eventsBougie as $event) {
 			$tabEventsLie[$event['id']] = 'checked';
 		}
-		print_r($tabEventsLie);
-		// $admin_status = 'unchecked';
-		// $modo_status = 'unchecked';
-		// $user_status = 'unchecked';
-
-		// //regarde quel est le rôle de base de l'utilisateur
-		// if ($role == 2) {
-		// 	$admin_status = 'checked';
-		// } else if ($role == 1) {
-		// 	$modo_status = 'checked';
-		// } else {
-		// 	$user_status = 'checked';
-		// }
-
+		// print_r($tabEventsLie);
 
 		echo "<h3> Lier ".$nom."</h3>";
 	}
