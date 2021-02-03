@@ -11,7 +11,6 @@
 		<p>Bougie associée*</p>
 		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 			<?php foreach ($bougies as $bougie) {
-				// print_r($livre);
 			  echo "<input type=\"radio\" class=\"btn-check\" id=\"btncheck".$bougie->nom."\" name=\"bougie\" value=\"".$bougie->id."\">";
 			  echo "<label class=\"btn btn-outline-primary\" for=\"btncheck".$bougie->nom."\">".$bougie->nom."</label>";
 			} ?>

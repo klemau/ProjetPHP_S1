@@ -26,7 +26,7 @@ class EventController extends Controller {
 		else
 		{
 			$nom = $_POST['nom'];
-			$e = new \Framework\Object\Event($id, $nom);
+			$e = new \Framework\Object\Event($nom, NULL, $id);
 			$model->updateEvent($e);
 			$this->display('listeEvents', 'Liste Events', $this->getEvents());		
 		}
@@ -49,7 +49,6 @@ class EventController extends Controller {
 		else
 		{
 			$nom = $_POST['nom'];
-			var_dump($nom);
 			$e = new \Framework\Object\Event($nom);
 			$model->create($e);
 			$this->display('listeEvents', 'Liste Events', $this->getEvents());	

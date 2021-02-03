@@ -11,17 +11,20 @@ class RecetteController extends Controller {
 	function getRecettes(){ // Récupère et retourne une liste des tous les évènements
 		require_once(__DIR__.'/../models/RecetteModel.php');
 		$model = new \Framework\Model\RecetteModel();
-
 		return $model->getListRecettes();
 	}
 
 	function update($id){
 		require_once(__DIR__.'/../models/RecetteModel.php');
 		$model = new \Framework\Model\RecetteModel();
-		$user = $model->getRecetteByID($id);
+		require_once(__DIR__.'/../models/BougieModel.php');
+		$modelBougie= new \Framework\Model\BougieModel();
+		require_once(__DIR__.'/../models/OdeurModel.php');
+		$modelOdeur = new \Framework\Model\OdeurModel();
+		$recette = $model->getRecetteByID($id);
 		if(!isset($_POST['nom']))
 		{
-			$this->display('form_updateRecette', 'Modifier une Recette',  array("id" => $id, "bougies" => $modelBougie->getListBougies(), "odeurs" => $modelOdeur->getListOdeurs()));
+			$this->display('form_updateRecette', 'Modifier une Recette',  array("recette" => $recette, "bougies" => $modelBougie->getListBougies(), "odeur" => $modelOdeur->getListOdeurs()));
 		}
 		else
 		{

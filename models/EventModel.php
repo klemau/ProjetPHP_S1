@@ -6,26 +6,18 @@ require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class EventModel {	
 	function create($e){
-		var_dump($e);
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				//Verifie l'existance dans la base de données
-				if($this->getEventByName($e->nom)!=NULL){
-					echo("Event déjà connu");
-				}
-				else {
+				if(!$this->getEventByName($e->nom)->id!=NULL) {
 					$insert = $database->query('INSERT INTO event (name) VALUES ("' .$e->nom. '")' );
 					if($insert != false ) {
-						echo("Insertion event effectuee");
 						if($e->bougies!=null){
 							$id = $this->getEventID($e->nom);
 
 							foreach($e->bougies as $bougie){
 								$insert = $database->query('INSERT INTO events (id_bougie,id_event) VALUES ('.$bougie['id'].', '.$id.')');
-								if($insert != false ) {
-									echo("Insertion effectuée dans events");
-								}
 							}
 						}
 					}					
@@ -45,12 +37,9 @@ class EventModel {
 				$result = $database->query('SELECT * FROM event WHERE id='.$id);
 				if($result!=null && $result->fetch()!=null){
 					$delete = $database->query('DELETE FROM event WHERE id='.$id);
-					if($delete->fetch() != null ) echo("suppression effectuée");
+					if($delete != false ) echo("suppression effectuée");
 
 					$database->query('DELETE FROM events WHERE id_event='.$id);
-				}
-				else {
-					echo("Event inconnue");
 				}
 			}
 			catch(Exception $e){
@@ -67,10 +56,6 @@ class EventModel {
 				$result = $database->query('SELECT * FROM event WHERE id='.$event->id);
 				if($result!=false && $result->fetch()!=null){
 					$update = $database->query('UPDATE event SET name="'.$event->nom.'" WHERE id='.$event->id);
-					if($update!= false ) echo("Modification effectuée");
-				}
-				else {
-					echo("Event inconnu");
 				}
 			}
 			catch(Exception $e){
@@ -85,14 +70,11 @@ class EventModel {
 		if($database!=null){
 			try{
 				$result = $database->query('SELECT * FROM event WHERE id='.$id);
-				if($result!=false && $result->fetch()!=null){
+				if($result!=false){
 					$delete = $database->query('DELETE FROM events WHERE id_event='.$id);
 					foreach($bougies as $idB){
 						$update = $database->query("INSERT INTO events (id_event, id_bougie) VALUES ($id,$idB)");
 					}
-				}
-				else {
-					echo("Event inconnu");
 				}
 			}
 			catch(Exception $e){
@@ -163,7 +145,6 @@ class EventModel {
 		if($database!=null){
 			try{
 				$result = $database->query("SELECT name, id FROM event WHERE name='".$nom."'");
-				var_dump($result);
 				if($result!=false){
 					$e = $result->fetch();
 					$bougies = null;
@@ -181,7 +162,6 @@ class EventModel {
 					}
 
 					$newE = new \Framework\Object\Event($e['name'], $bougies, $e['id']);
-					var_dump($newE);
 					return $newE;
 				}
 				else {

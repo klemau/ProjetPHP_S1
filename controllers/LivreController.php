@@ -21,7 +21,7 @@ class LivreController extends Controller {
 		$user = $model->getLivreByID($id);
 		if(!isset($_POST['nom']))
 		{
-			$this->display('form_updateLivre', 'Modifier une Livre',  array("id" => $id, "bougies" => $modelBougie->getListBougies(), "Livres" => $modelLivre->getListLivres()));
+			$this->display('form_updateLivre', 'Modifier une Livre',  array("id" => $id, "Livres" => $model->getListLivres()));
 		}
 		else
 		{
@@ -50,8 +50,8 @@ class LivreController extends Controller {
 		else
 		{
 			$nom_Livre = $_POST['nom'];
-			$statut_Livre = $_POST['statut'];
-			$Livre = new \Framework\Object\Livre($nom_Livre, $statut_Livre);
+			$auteur_Livre =(int)$_POST['auteur'];
+			$Livre = new \Framework\Object\Livre($nom_Livre, $auteur_Livre);
 			$model->create($Livre);
 			$this->display('listeLivres', 'Liste Livres', $this->getLivres());	
 		}

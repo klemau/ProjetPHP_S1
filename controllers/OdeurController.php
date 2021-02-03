@@ -21,12 +21,14 @@ class OdeurController extends Controller {
 		$user = $model->getOdeurByID($id);
 		if(!isset($_POST['nom']))
 		{
-			$this->display('form_updateOdeur', 'Modifier une Odeur',  array("id" => $id, "bougies" => $modelBougie->getListBougies(), "odeurs" => $modelOdeur->getListOdeurs()));
+			$this->display('form_updateOdeur', 'Modifier une Odeur',  array("id" => $id, "odeurs" => $model->getListOdeurs()));
 		}
 		else
 		{
 			$nom = $_POST['nom'];
-			$model->updateOdeur($id, $nom);
+			$statut = $_POST['statut'];
+			$odeur = new \Framework\Object\Odeur($nom, $statut, $id);
+			$model->updateOdeur($odeur);
 			$this->display('listeOdeurs', 'Liste Odeurs', $this->getOdeurs());		
 		}
 	}

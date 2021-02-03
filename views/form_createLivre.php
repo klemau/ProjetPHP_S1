@@ -12,7 +12,6 @@
 		<p>Auteur</p>
 		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 			<?php foreach ($auteurs as $auteur) {
-				// print_r($livre);
 			  echo "<input type=\"radio\" class=\"btn-check\" id=\"btncheck".$auteur->nom."\" name=\"auteur\" value=\"".$auteur->id."\">";
 			  echo "<label class=\"btn btn-outline-primary\" for=\"btncheck".$auteur->nom."\">".$auteur->nom."</label>";
 			} ?>

@@ -13,8 +13,6 @@ else
 $url .= "://"; 
 $url .= $_SERVER['HTTP_HOST'];
 
-$GLOBALS['url']=$url;
-
 session_start();
 
 if(! isset($_SESSION['login']))
@@ -37,11 +35,5 @@ if(isset($_GET['action'])){
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
 }
-
-/*
-var_dump($controller);
-var_dump($action);
-var_dump($id);
-*/
 
 $router->createController($controller, $action, $id);
