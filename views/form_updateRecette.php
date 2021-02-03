@@ -30,5 +30,5 @@
 		<label for="customRange3" class="form-label">Quantité</label>
 		<input type="range" class="form-range" min="0" max="20" step="0.5" id="customRange3" name="quantite">
 	</div>
-<input type="submit" class="btn btn-primary" name="submitRecette" value="Ajouter la recette" />
+<input type="submit" class="btn btn-primary" name="submitRecette" value="Modifier la recette" />
 </form>

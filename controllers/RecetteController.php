@@ -22,14 +22,17 @@ class RecetteController extends Controller {
 		require_once(__DIR__.'/../models/OdeurModel.php');
 		$modelOdeur = new \Framework\Model\OdeurModel();
 		$recette = $model->getRecetteByID($id);
-		if(!isset($_POST['nom']))
+		if(!isset($_POST['submitRecette']))
 		{
-			$this->display('form_updateRecette', 'Modifier une Recette',  array("recette" => $recette, "bougies" => $modelBougie->getListBougies(), "odeur" => $modelOdeur->getListOdeurs()));
+			$this->display('form_updateRecette', 'Modifier une Recette',  array("id" => $id, "recette" => $recette, "bougies" => $modelBougie->getListBougies(), "odeurs" => $modelOdeur->getListOdeurs()));
 		}
 		else
 		{
-			$nom = $_POST['nom'];
-			$model->updateRecette($id, $nom);
+			$id_odeur = (int) $_POST['odeur'];
+			$id_bougie = (int) $_POST['bougie'];
+			$quantite = (int) $_POST['quantite'];
+			$recette = new \Framework\Object\Recette($id_bougie, $id_odeur, $quantite);
+			$model->create($recette);
 			$this->display('listeRecettes', 'Liste Recettes', $this->getRecettes());		
 		}
 	}
