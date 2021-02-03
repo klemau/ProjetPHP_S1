@@ -16,11 +16,71 @@ class BougieController extends Controller {
 	}
 
 	function update($id){
-		
+		require_once(__DIR__.'/../models/BougieModel.php');
+		$model = new \Framework\Model\BougieModel();
+		require_once(__DIR__.'/../models/LivreModel.php');
+		$modelLivre = new \Framework\Model\LivreModel();
+		require_once(__DIR__.'/../models/CollectionModel.php');
+		$modelCollection = new \Framework\Model\CollectionModel();
+		$user = $model->getBougieByID($id);
+		if(!isset($_POST['nom']))
+		{
+			$this->display('form_updateBougie', 'Modifier une Bougie',  array("id" => $id, "livres" => $modelLivre->getListLivres(), "collection" => $modelCollection->getListCollections()));
+		}
+		else
+		{
+			if(! isset($_POST['nom']) || empty($_POST['nom']))
+			{
+				echo "Nom Obligatoire.";
+			$this->display('form_updateBougie', 'Modifier une Bougie',  array("id" => $id, "livres" => $modelLivre->getListLivres(), "collection" => $modelCollection->getListCollections()));
+				exit(1);
+			}
+			else
+			{
+				$nom = $_POST['nom'];
+			}
+
+			if( ! isset($_POST['livre']))
+			{
+				echo "Choix d'un livre obligatoire";
+			$this->display('form_updateBougie', 'Modifier une Bougie',  array("id" => $id, "livres" => $modelLivre->getListLivres(), "collection" => $modelCollection->getListCollections()));
+				exit(1);
+			}
+			else
+			{
+				$livre = $_POST['livre'];
+			}
+
+			if( ! isset($_POST['statut']))
+			{
+				echo "Choix d'un statut obligatoire";
+			$this->display('form_updateBougie', 'Modifier une Bougie',  array("id" => $id, "livres" => $modelLivre->getListLivres(), "collection" => $modelCollection->getListCollections()));
+				exit(1);
+			}
+			else
+			{
+				$statut = $_POST['statut'];
+			}
+			
+			if(empty($_POST['collection'])) { 
+				$collection = NULL;
+			} else {
+				$collection = $_POST['collection'];
+			}
+			
+			// var_dump($login);
+			// var_dump($pwd);
+			$b = new \Framework\Object\Bougie($nom,$livre,$collection,$statut);
+			$model->updateBougie($b);
+			$this->display('listeBougies', 'Liste Bougies', $this->getBougies());		
+		}
 	}
 
 	function delete($id){
-
+		require_once(__DIR__.'/../models/BougieModel.php');
+		$model = new \Framework\Model\BougieModel();
+		$model->deleteBougie($id);
+		$this->display('listeBougies', 'Liste Bougies', $this->getBougies());
 	}
 
 	function link($id)
