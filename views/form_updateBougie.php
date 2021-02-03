@@ -7,7 +7,6 @@
 
 	echo "<form action=\"".$url."/Bougie/update/".$id."\" method=\"post\">";
 ?>
-<form action=<?php echo $url."/Bougie/update"; ?> method="post">
 	<div class="mb-3">
 	  	<label for="nom"> Nom* </label>
 		<input type="input" name="nom" /><br />

@@ -19,9 +19,11 @@ class LivreController extends Controller {
 		require_once(__DIR__.'/../models/LivreModel.php');
 		$model = new \Framework\Model\LivreModel();
 		$user = $model->getLivreByID($id);
+		require_once(__DIR__.'/../models/AuteurModel.php');
+		$modelAuteur = new \Framework\Model\AuteurModel();
 		if(!isset($_POST['nom']))
 		{
-			$this->display('form_updateLivre', 'Modifier une Livre',  array("id" => $id, "Livres" => $model->getListLivres()));
+			$this->display('form_updateLivre', 'Modifier une Livre',  array("id" => $id, "auteurs" => $modelAuteur->getListAuteurs()));
 		}
 		else
 		{

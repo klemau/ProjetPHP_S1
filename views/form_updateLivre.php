@@ -1,21 +1,22 @@
 <?php 
 	global $url;
+	$auteurs=$content['auteurs'];
+	$id=$content['id'];
 ?>
 
-<form action=<?php echo $url."/Odeur/create"; ?> method="post">
+<form action=<?php echo $url."/Livre/update".$id; ?> method="post">
 	<div class="mb-3">
-		<label for="nom"> Nom de l'évenement </label>
+		<label for="nom"> Nom du Livre </label>
 		<input type="input" name="nom" /><br />
 	</div>
-	<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-	  <input type="radio" class="btn-check" name="role" id="btnadmin" autocomplete="off" value="2" <?php echo $admin_status;?> >
-	  <label class="btn btn-outline-primary" for="btnadmin">Administrateur</label>
-
-	  <input type="radio" class="btn-check" name="role" id="btnmodo" autocomplete="off" value="1" <?php echo $modo_status;?> >
-	  <label class="btn btn-outline-primary" for="btnmodo">Modérateur</label>
-
-	  <input type="radio" class="btn-check" name="role" id="btnuser" autocomplete="off" value="0" <?php echo $user_status;?> >
-	  <label class="btn btn-outline-primary" for="btnuser">Utilisateur</label>
+	<div class="input-group mb-3">
+		<p>Auteur</p>
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+			<?php foreach ($auteurs as $auteur) {
+			  echo "<input type=\"radio\" class=\"btn-check\" id=\"btncheck".$auteur->nom."\" name=\"auteur\" value=\"".$auteur->id."\">";
+			  echo "<label class=\"btn btn-outline-primary\" for=\"btncheck".$auteur->nom."\">".$auteur->nom."</label>";
+			} ?>
+		</div>
 	</div>
-<input type="submit" class="btn btn-primary" name="submitOdeur" value="Ajouter l'évenement" />
+<input type="submit" class="btn btn-primary" name="submitLivre" value="Modifier le Livre" />
 </form>
