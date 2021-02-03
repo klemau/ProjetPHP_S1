@@ -27,8 +27,10 @@ class LivreController extends Controller {
 		}
 		else
 		{
-			$nom = $_POST['nom'];
-			$model->updateLivre($id, $nom);
+			$nom_Livre = $_POST['nom'];
+			$auteur_Livre =(int)$_POST['auteur'];
+			$Livre = new \Framework\Object\Livre($nom_Livre, $auteur_Livre,null, $id);
+			$model->updateLivre($Livre);
 			$this->display('listeLivres', 'Liste Livres', $this->getLivres());		
 		}
 	}

@@ -40,14 +40,11 @@ class LivreModel {
 	function updateLivre($livre){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
-			try{
+			try{			
+				var_dump($livre);
 				$result = $database->query('SELECT * FROM livre WHERE id_livre='.$livre->id);
 				if($result!=false && $result->fetch()!=null){
-					$update = $database->query('UPDATE livre SET titre="'.$livre->titre.', id_auteur='.$livre->auteur.'" WHERE id_livre='.$livre->id);
-					if($update!= false ) echo("Modification effectuée");
-				}
-				else {
-					echo("Livre inconnu");
+					$update = $database->query('UPDATE livre SET titre="'.$livre->titre.'", id_auteur='.$livre->auteur.' WHERE id_livre='.$livre->id);
 				}
 			}
 			catch(Exception $e){

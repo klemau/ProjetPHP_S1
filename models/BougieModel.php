@@ -34,11 +34,7 @@ class BougieModel {
 				$result = $database->query('SELECT * FROM bougie WHERE id_bougie='.$id);
 				if($result!=false){
 					$delete = $database->query('DELETE FROM bougie WHERE id_bougie='.$id);
-					if($delete->fetch() != null ) echo("suppression effectuée");
 					$database->query('DELETE FROM events WHERE id_bougie='.$id);
-				}
-				else {
-					echo("Recette inconnue");
 				}
 			}
 			catch(Exception $e){
@@ -54,11 +50,7 @@ class BougieModel {
 			try{
 				$result = $database->query('SELECT * FROM bougie WHERE id_bougie='.$bougie->id);
 				if($result!=false){
-					$update = $database->query('UPDATE event SET nom_bougie="'.$bougie->nom.'", id_livre='.$bougie->livre.', id_collection='.$bougie->collection.', statut_bougie="'.$bougie->statut.'" WHERE id_bougie='.$bougie->id);
-					if($update!= false ) echo("Modification effectuée");
-				}
-				else {
-					echo("Bougie inconnue");
+					$update = $database->query('UPDATE bougie SET nom_bougie="'.$bougie->nom.'", id_livre='.$bougie->livre.', id_collection='.$bougie->collection.', statut_bougie="'.$bougie->statut.'" WHERE id_bougie='.$bougie->id);
 				}
 			}
 			catch(Exception $e){
