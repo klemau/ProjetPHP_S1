@@ -74,7 +74,7 @@ class RecetteModel {
 				
 				if($result!=false){
 					$r = $result->fetch();
-					return new \Framework\Object\Recette($r['id_bougie'], $r['id_odeur'], $r['quantite'], $r['nom_bougie'],$r['nom_odeur'], $r['id_recette']);
+					return new \Framework\Object\Recette($r['id_bougie'], $r['id_odeur'], $r['qte'], $r['nom_bougie'],$r['nom_odeur'], $r['id_recette']);
 				}
 				else {
 					return null;
