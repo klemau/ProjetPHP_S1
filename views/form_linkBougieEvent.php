@@ -22,16 +22,16 @@ global $url;
 
 		echo "<h3> Lier ".$nom."</h3>";
 	}
-	// echo "<form action=\"$url/User/update/$id\" method=\"post\">";
+	echo "<form action=\"$url/Bougie/link/$id\" method=\"post\">";
 ?>
 	<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 	<?php 
 	foreach ($events as $event) {
 		// print_r($event);
-	  echo "<input type=\"checkbox\" class=\"btn-check\" id=\"btncheck".$event->nom."\" value=\"".$event->id."\" ".$tabEventsLie[$event->id].">";
+	  echo "<input type=\"checkbox\" class=\"btn-check\" id=\"btncheck".$event->nom."\" name=\"liens[]\" value=\"".$event->id."\" ".$tabEventsLie[$event->id].">";
 	  echo "<label class=\"btn btn-outline-primary\" for=\"btncheck".$event->nom."\">".$event->nom."</label>";
 	}
 	  ?>
 	</div>
-	<input type="submit" class="btn btn-primary" name="submit" value="Modifier les liens" />
+	<input type="submit" class="btn btn-primary" name="submitLiens" value="Modifier les liens" />
 </form>

@@ -1,7 +1,7 @@
 <?php
 global $url;
 
-echo "<form action=\"$url/Recette/create\" method=\"post\"><input type=\"submit\" class=\"btn btn-info\" name=\"submit\" value=\"Ajouter une Odeur\"/></form>";
+echo "<form action=\"$url/Livre/create\" method=\"post\"><input type=\"submit\" class=\"btn btn-info\" name=\"submit\" value=\"Ajouter un Livre\"/></form>";
 ?>
 
 <table class="table table-hover">

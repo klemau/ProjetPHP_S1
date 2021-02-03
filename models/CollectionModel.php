@@ -5,16 +5,16 @@ include(__DIR__.'/../objects/Collection.php');
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class CollectionModel {	
-	function create($collection){
+	function create($nom){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				$result = $database->query('SELECT * FROM collection WHERE nom_collection="'.$collection->nom.'"');
+				$result = $database->query('SELECT * FROM collection WHERE nom_collection="'.$nom.'"');
 				if($result!=null && $result->fetch()!=null){
 					echo("COLLECTION DEJA CONNUE");
 				}
 				else {
-					$insert = $database->query('INSERT INTO collection (nom_collection) VALUES ("'.$collection->nom.'")' );
+					$insert = $database->query('INSERT INTO collection (nom_collection) VALUES ("'.$nom.'")' );
 					if($insert->fetch() != null ) echo("Ajout effectué");
 				}
 			}
@@ -45,13 +45,13 @@ class CollectionModel {
 		}
 	}
 
-	function updateCollection($collection){
+	function updateCollection($id, $nom){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				$result = $database->query('SELECT * FROM collection WHERE id_collection='.$collection->id);
+				$result = $database->query('SELECT * FROM collection WHERE id_collection='.$id);
 				if($result!=false && $result->fetch()!=null){
-					$update = $database->query('UPDATE collection SET nom_collection="'.$collection->nom.'" WHERE id_collection='.$collection->id);
+					$update = $database->query('UPDATE collection SET nom_collection="'.$nom.'" WHERE id_collection='.$id);
 					if($update!= false ) echo("Modification effectuée");
 				}
 				else {

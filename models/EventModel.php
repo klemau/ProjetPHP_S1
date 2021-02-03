@@ -6,10 +6,11 @@ require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class EventModel {	
 	function create($e){
+		var_dump($e);
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
-				//Verifie l'existance du livre dans la base de données
+				//Verifie l'existance dans la base de données
 				if($this->getEventByName($e->nom)!=NULL){
 					echo("Event déjà connu");
 				}

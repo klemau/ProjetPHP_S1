@@ -1,7 +1,5 @@
 <?php 
-	if($content != NULL){
-		echo "<h3>".$content."</h3>";
-	}
+	global $url;
 ?>
 
 <form action=<?php echo $url."/User/Create"?> method="post">

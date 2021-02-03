@@ -46,7 +46,7 @@ class AuteurModel {
 		}
 	}
 
-	function updateAuteur($collection){
+	function updateAuteur($auteur){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{

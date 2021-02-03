@@ -5,18 +5,18 @@ include(__DIR__.'/../objects/Bougie.php');
 require_once(__DIR__.'/../Lib/DatabaseConnection.php');
 
 class BougieModel {	
-	function create($b){
+	function create($nom,$livre,$collection,$statut){
 		$database = \Framework\DatabaseConnection::getDatabase();
 		if($database!=null){
 			try{
 				//Verifie l'existance de la bougie dans la base de données
-				var_dump($this->getBougieByNom($b->nom));
-				if($this->getBougieByNom($b->nom)!=NULL){
+				// var_dump($this->getBougieByNom($nom));
+				if($this->getBougieByNom($nom)->id!=NULL){
 					echo("Bougie déjà connue");
 				}
 				else {
 					$insert = $database->query('INSERT INTO bougie (nom_bougie, id_livre, id_collection, statut_bougie) 
-						VALUES ("' .$b->nom. '", '.$b->livre.', '.$b->collection.', "'.$b->statut.'")' );
+						VALUES ("' .$nom. '", '.$livre.', '.$collection.', "'.$statut.'")' );
 
 					if($insert != false ) echo("Insertion effectuee");
 				}
@@ -149,7 +149,7 @@ class BougieModel {
 							$e=$resEvents->fetch();
 						}
 					}
-					return new Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
+					return new \Framework\Object\Bougie($b['nom_bougie'], $b['id_livre'], $b['id_collection'], $b['statut_bougie'], $b['titre'], $b['nom_collection'],$events, $b['id_bougie']);
 				}
 				else {
 					return null;
