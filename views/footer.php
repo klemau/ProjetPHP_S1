@@ -1,1 +1,1 @@
-<footer>Projet PHP 2021 - S1 IMR ENSSAT - Blandine Guillemot & Killian Le Mau</footer>
+<footer>Projet BDD/WEB 2021 - S2 IMR1 ENSSAT - Nathant Lefort, Killian Le Mau, Romain Le Rest</footer>

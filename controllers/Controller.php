@@ -36,19 +36,30 @@ class Controller{
 	}
 
 	protected function verifyConnection(){
-		require_once("./Models/UserModel.php");
-		$mod = new \Framework\Model\UserModel();
-
+		require_once("./Models/UtilisateurModel.php");
+		require_once("./Models/JugeModel.php");
+		require_once("./Models/OrganisateurModel.php");
+		$mod = null;
+		if(isset($_POST["role"])){
+			switch($_POST["role"]){
+				case "utilisateur":
+					$mod = new \Framework\Model\UtilisateurModel();
+					break;
+				case "juge":
+					$mod = new \Framework\Model\JugeModel();
+					break;
+				case "organisateur":
+					$mod = new \Framework\Model\OrganisateurModel();
+					break;
+			}
+		}
+		var_dump($mod);
 		if(isset($_POST["login"]) && isset($_POST["password"])) {
 			//si POST de login et de password existent, c'est qu'on arrive de Connexion
 			try {
 				if($mod->connect($_POST["login"], $_POST["password"]) == true) {
 					//echo("<h3> Connexion reussie ".$_SESSION['login']."</h3>");
 					return true;
-				}
-				else {
-					//echo("<h3> Connexion ratee </h3>");
-					//Renvoyer sur form_login et afficher l'erreur
 				}
 			}
 			catch (Exception $e) {
